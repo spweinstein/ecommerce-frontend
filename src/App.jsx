@@ -6,6 +6,11 @@ import SignUpForm from "./components/SignUpForm/SignUpForm.jsx";
 import SignInForm from "./components/SignInForm/SignInForm.jsx";
 import Landing from "./components/Landing/Landing.jsx";
 import Dashboard from "./components/Dashboard/Dashboard.jsx";
+import ProductList from "./components/Products/ProductList/ProductList.jsx";
+import ProductDetails from "./components/Products/ProductDetails/ProductDetails.jsx";
+import ProductCreateForm from "./components/Products/ProductCreateForm/ProductCreateForm.jsx";
+import ProductEditForm from "./components/Products/ProductEditForm/ProductEditForm.jsx";
+
 import * as shopService from "./services/shopService.js";
 
 const App = () => {
@@ -18,6 +23,10 @@ const App = () => {
         <Route path="/" element={user ? <Dashboard /> : <Landing />} />
         <Route path="/sign-up" element={<SignUpForm />} />
         <Route path="/sign-in" element={<SignInForm />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/products/:productId" element={<ProductDetails />} />
+        <Route path="/products/new" element={<ProductCreateForm />} />
+        <Route path="/products/:productId/edit" element={<ProductEditForm />} />
       </Routes>
     </>
   );

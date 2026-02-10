@@ -10,12 +10,44 @@ export const getProducts = async () => {
   }
 };
 
-export const getProduct = async (ProductId) => {};
+export const getProduct = async (productId) => {
+  try {
+    const { data } = await api.get(`/products/${productId}`);
+    if (data.err) throw new Error(data.err);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const createProduct = async (ProductId, formData) => {};
+export const createProduct = async (formData) => {
+  try {
+    const { data } = await api.post(`/products`, formData);
+    if (data.err) throw new Error(data.err);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const updateProduct = async (ProductId, formData) => {};
+export const updateProduct = async (productId, formData) => {
+  try {
+    const { data } = await api.put(`/products/${productId}`, formData);
+    if (data.err) throw new Error(data.err);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const deleteProduct = async (ProductId) => {};
+export const deleteProduct = async (productId) => {
+  try {
+    const { data } = await api.delete(`/products/${productId}`);
+    if (data.err) throw new Error(data.err);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // getProducts();
