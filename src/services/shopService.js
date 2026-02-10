@@ -3,20 +3,44 @@ import api from "./apiConfig.js";
 export const getShops = async () => {
   try {
     const { data } = await api.get("/shops");
-    if (data.err) throw new Error(data.err);
-    console.log(data);
     return data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
-export const getShop = async (shopId) => {};
+export const getShop = async (shopId) => {
+  try {
+    const { data } = await api.get(`/shops/${shopId}`);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export const createShop = async (shopId, formData) => {};
+export const createShop = async (formData) => {
+  try {
+    const { data } = await api.post("/shops", formData);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export const updateShop = async (shopId, formData) => {};
+export const updateShop = async (shopId, formData) => {
+  try {
+    const { data } = await api.put(`/shops/${shopId}`, formData);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
-export const deleteShop = async (shopId) => {};
-
-getShops();
+export const deleteShop = async (shopId) => {
+  try {
+    const { data } = await api.delete(`/shops/${shopId}`);
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
