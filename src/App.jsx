@@ -12,6 +12,13 @@ import ShopCreateForm from "./components/Shops/ShopCreateForm/ShopCreateForm.jsx
 import ShopDetails from "./components/Shops/ShopDetails/ShopDetails.jsx";
 import ShopEditForm from "./components/Shops/ShopEditForm/ShopEditForm.jsx";
 
+import ProductList from "./components/Products/ProductList/ProductList.jsx";
+import ProductDetails from "./components/Products/ProductDetails/ProductDetails.jsx";
+import ProductCreateForm from "./components/Products/ProductCreateForm/ProductCreateForm.jsx";
+import ProductEditForm from "./components/Products/ProductEditForm/ProductEditForm.jsx";
+
+import * as shopService from "./services/shopService.js";
+
 const App = () => {
   const { user } = useContext(UserContext);
 
@@ -28,14 +35,10 @@ const App = () => {
         <Route path="/shops/:shopId" element={<ShopDetails user={user} />} />
         <Route path="/shops/:shopId/edit" element={<ShopEditForm />} />
 
-        <Route
-          path="/products/new"
-          element={
-            <main>
-              <h1>Product Form</h1>
-            </main>
-          }
-        />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/products/:productId" element={<ProductDetails />} />
+        <Route path="/products/new" element={<ProductCreateForm />} />
+        <Route path="/products/:productId/edit" element={<ProductEditForm />} />
       </Routes>
     </>
   );

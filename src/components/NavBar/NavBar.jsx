@@ -19,13 +19,13 @@ const NavBar = () => {
         <li>
           <Link to="/shops">Shops</Link>
         </li>
+        <li>
+          <Link to="/products">Products</Link>
+        </li>
         {user ? (
           <>
             <li>
               <Link to="/shops/new">Create Shop</Link>
-            </li>
-            <li>
-              <Link to="/products/new">Add Product</Link>
             </li>
             <li>Welcome, {user.username}</li>
             <li>
