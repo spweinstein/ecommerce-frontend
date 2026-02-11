@@ -10,6 +10,7 @@ const ShopEditForm = () => {
     description: "",
     address1: "",
     region: "",
+    postalCode: "",
     country: "",
   });
 
@@ -22,6 +23,7 @@ const ShopEditForm = () => {
         description: shopData.description || "",
         address1: shopData.address?.address1 || shopData.address1 || "",
         region: shopData.address?.region || shopData.region || "",
+        postalCode: shopData.address?.postalCode || shopData.postalCode || "",
         country: shopData.address?.country || shopData.country || "",
       });
     };
@@ -35,7 +37,17 @@ const ShopEditForm = () => {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      await shopService.updateShop(shopId, formData);
+      const formattedData = {
+        name: formData.name,
+        description: formData.description,
+        address: {
+          address1: formData.address1,
+          region: formData.region,
+          postalCode: formData.postalCode,
+          country: formData.country,
+        },
+      };
+      await shopService.updateShop(shopId, formattedData);
       navigate(`/shops/${shopId}`);
     } catch (err) {
       console.error(err);
