@@ -23,6 +23,14 @@ nav a {
   color: #ffffff;
   text-decoration: none;
   padding: 12px 24px;
+
+
+
+
+
+
+
+  
   border-radius: 10px;
   font-weight: 700;
   font-size: 16px;
@@ -61,4 +69,70 @@ nav a.sign-out-btn {
 nav a.sign-out-btn:hover {
   background-color: #f3e5f5;
   color: #4527a0;
+}
+
+/* Mobile-first adjustments */
+@media (max-width: 768px) {
+  nav {
+    padding: 1rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  nav li:nth-child(4) {
+    margin-left: 0;
+  }
+
+  nav a {
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .welcome-box {
+    text-align: center;
+    justify-content: center;
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  nav {
+    padding: 1rem 1.5rem;
+  }
+
+  nav ul {
+    gap: 10px;
+  }
+
+  nav a {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+
+  .welcome-box {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+}
+
+/* Handle very small screens */
+@media (max-width: 480px) {
+  nav a {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .welcome-box {
+    font-size: 13px;
+    padding: 8px 12px;
+    white-space: normal;
+    text-align: center;
+  }
 }

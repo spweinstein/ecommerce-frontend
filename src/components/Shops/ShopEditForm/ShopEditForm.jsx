@@ -96,6 +96,16 @@ const ShopEditForm = () => {
             required
             onChange={handleChange}
             value={formData.industry}
+
+
+
+
+
+
+
+
+
+            
           >
             <option value="">-- Select an option --</option>
 

@@ -75,6 +75,17 @@ const ProductDetails = ({ user }) => {
           <p>
             <b>Brand:</b> {product.brand}
           </p>
+
+
+
+
+
+
+
+
+
+
+          
           <p>
             <b>SKU:</b> {product.sku}
           </p>

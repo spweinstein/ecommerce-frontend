@@ -67,6 +67,10 @@ const ProductEditForm = () => {
         formData,
       );
       navigate(`/products/${productId}`);
+
+
+
+      
     } catch (error) {
       console.log(error);
     }
