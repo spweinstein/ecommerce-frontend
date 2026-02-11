@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router";
 import * as shopService from "../../../services/shopService";
 import ProductList from "../../Products/ProductList/ProductList.jsx";
+import "./ShopDetails.css";
 
 const ShopDetails = ({ user }) => {
   const { shopId } = useParams();
@@ -40,16 +41,18 @@ const ShopDetails = ({ user }) => {
   const isOwner = shop.user === user?._id || shop.user?._id === user?._id;
 
   return (
-    <main>
+    <main className="shop-details-container">
       <header>
         <h1>{shop.name}</h1>
         {isOwner && (
-          <>
-            <button>
-              <Link to={`/shops/${shopId}/edit`}>Edit</Link>
+          <div className="actions">
+            <Link to={`/shops/${shopId}/edit`} className="edit-link">
+              Edit
+            </Link>
+            <button onClick={handleDelete} className="delete-button">
+              Delete
             </button>
-            <button onClick={handleDelete}>Delete</button>
-          </>
+          </div>
         )}
       </header>
 
@@ -84,7 +87,9 @@ const ShopDetails = ({ user }) => {
         <ProductList shop={shop} user={user} />
       </section>
 
-      <Link to="/shops">Back to Shops</Link>
+      <Link to="/shops" className="back-link">
+        Back to Shops
+      </Link>
     </main>
   );
 };
