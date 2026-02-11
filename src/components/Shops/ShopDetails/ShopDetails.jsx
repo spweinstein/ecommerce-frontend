@@ -59,6 +59,9 @@ const ShopDetails = ({ user }) => {
       <section>
         <h2>About</h2>
         <p>{shop.description}</p>
+        <p>
+          <b>Industry: </b> {shop.industry.name}
+        </p>
       </section>
 
       <section>
