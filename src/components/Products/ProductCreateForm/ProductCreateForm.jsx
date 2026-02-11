@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import * as productService from "../../../services/productService.js";
 import * as shopService from "../../../services/shopService.js";
 
-import { useNavigate, useLocation } from "react-router";
+import { useNavigate, useLocation, Link } from "react-router";
 import { UserContext } from "../../../contexts/UserContext.jsx";
 
 const ProductCreateForm = () => {
@@ -23,8 +23,28 @@ const ProductCreateForm = () => {
     length: 0,
     width: 0,
     height: 0,
-    shop: shop._id,
+    shop,
   });
+
+  if (!shop) {
+    // Create product page was not accessed from a shop page
+    // Show error message
+    return (
+      <>
+        <h3>Must create a product from link on a shop's page</h3>;
+        <Link to="/">Click here to return to homepage</Link>
+      </>
+    );
+  }
+
+  if (!user) {
+    return (
+      <main>
+        <p>Please sign in to access this page.</p>
+        <Link to="/sign-in">Sign In</Link>
+      </main>
+    );
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +58,7 @@ const ProductCreateForm = () => {
     try {
       e.preventDefault();
       const createdProduct = await productService.createProduct(formData);
-      navigate("/products");
+      navigate(`/shops/${shop._id}`);
     } catch (error) {
       console.log(error);
     }

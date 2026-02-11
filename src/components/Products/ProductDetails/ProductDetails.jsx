@@ -34,7 +34,7 @@ const ProductDetails = ({ user }) => {
 
   const handleDelete = async () => {
     await productService.deleteProduct(productId);
-    navigate("/products");
+    navigate(`/shops/${product.shop._id}`);
   };
 
   if (!product)
