@@ -83,7 +83,7 @@ const ProductDetails = ({ user }) => {
         <section>
           {typeof product.weight === "number" ? (
             <p>
-              <b>Weight:</b> {product.weight}
+              <b>Weight:</b> {product.weight} lbs
             </p>
           ) : (
             ""
