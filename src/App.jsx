@@ -17,8 +17,6 @@ import ProductDetails from "./components/Products/ProductDetails/ProductDetails.
 import ProductCreateForm from "./components/Products/ProductCreateForm/ProductCreateForm.jsx";
 import ProductEditForm from "./components/Products/ProductEditForm/ProductEditForm.jsx";
 
-import * as shopService from "./services/shopService.js";
-
 const App = () => {
   const { user } = useContext(UserContext);
 
@@ -26,7 +24,10 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        <Route path="/" element={user ? <Dashboard /> : <Landing />} />
+        <Route
+          path="/"
+          element={user ? <Landing user={user} /> : <Landing />}
+        />
         <Route path="/sign-up" element={<SignUpForm />} />
         <Route path="/sign-in" element={<SignInForm />} />
 
