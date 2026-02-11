@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import * as shopService from "../../../services/shopService";
 
 const ShopCreateForm = () => {

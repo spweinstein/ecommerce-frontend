@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import * as productService from "../../../services/productService.js";
 import { useParams, Link, useNavigate } from "react-router";
 
-const ProductDetails = () => {
+const ProductDetails = ({ user }) => {
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -37,30 +37,71 @@ const ProductDetails = () => {
     navigate("/products");
   };
 
+  if (!product)
+    return (
+      <main>
+        <p>Loading...</p>
+      </main>
+    );
+
+  const isOwner = product.user === user?._id || product.user?._id === user?._id;
+
   return (
     <div>
-      <h3>{product.name}</h3>
-      <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
-      <p>Brand: {product.brand}</p>
-      <p>SKU: {product.sku}</p>
-      {typeof product.weight === "number" ? (
-        <p>Weight: {product.weight}</p>
-      ) : (
-        ""
-      )}
-      {product?.length > 0 && product.width > 0 && product.height > 0 ? (
-        <p>
-          Dimensions: ({product.length})x({product.width})x(${product.height})
-        </p>
-      ) : (
-        ""
-      )}
-      <p>Shop: {product.shop.name}</p>
-      <button>
-        <Link to={`/products/${product._id}/edit`}>Edit</Link>
-      </button>
-      <button onClick={handleDelete}>Delete</button>
+      <header>
+        <h3>{product.name}</h3>
+        <p>Shop: {product.shop.name}</p>
+        {isOwner && (
+          <>
+            <button>
+              <Link to={`/products/${product._id}/edit`}>Edit</Link>
+            </button>
+            <button onClick={handleDelete}>Delete</button>
+          </>
+        )}
+      </header>
+      <main>
+        <section>
+          {" "}
+          <p>
+            <b>Description</b>: {product.description}
+          </p>
+        </section>
+
+        <section>
+          <p>
+            <b>Price:</b> ${product.price}
+          </p>
+          <p>
+            <b>Brand:</b> {product.brand}
+          </p>
+          <p>
+            <b>SKU:</b> {product.sku}
+          </p>
+        </section>
+
+        <section>
+          {typeof product.weight === "number" ? (
+            <p>
+              <b>Weight:</b> {product.weight}
+            </p>
+          ) : (
+            ""
+          )}
+          {product?.length > 0 && product?.width > 0 && product?.height > 0 ? (
+            <p>
+              <b>Dimensions:</b> ({product.length})x({product.width})x($
+              {product.height})
+            </p>
+          ) : (
+            ""
+          )}
+        </section>
+
+        <button>
+          <Link to={`/shops/${product.shop._id}`}>To Shop</Link>
+        </button>
+      </main>
     </div>
   );
 
