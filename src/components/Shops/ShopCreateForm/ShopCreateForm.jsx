@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router";
 import * as shopService from "../../../services/shopService";
+import { UserContext } from "../../../contexts/UserContext";
 
 const ShopCreateForm = () => {
   const navigate = useNavigate();
@@ -12,6 +13,16 @@ const ShopCreateForm = () => {
     postalCode: "",
     country: "",
   });
+  const { user } = useContext(UserContext);
+
+  if (!user) {
+    return (
+      <main>
+        <p>Please sign in to access this page.</p>
+        <Link to="/sign-in">Sign In</Link>
+      </main>
+    );
+  }
 
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });

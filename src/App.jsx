@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router";
 import { UserContext } from "./contexts/UserContext.jsx";
 import NavBar from "./components/NavBar/NavBar.jsx";
 import SignUpForm from "./components/SignUpForm/SignUpForm.jsx";
@@ -36,7 +36,10 @@ const App = () => {
         <Route path="/shops/:shopId/edit" element={<ShopEditForm />} />
 
         <Route path="/products" element={<ProductList />} />
-        <Route path="/products/:productId" element={<ProductDetails />} />
+        <Route
+          path="/products/:productId"
+          element={<ProductDetails user={user} />}
+        />
         <Route path="/products/new" element={<ProductCreateForm />} />
         <Route path="/products/:productId/edit" element={<ProductEditForm />} />
       </Routes>

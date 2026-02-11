@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router";
 import { UserContext } from "../../../contexts/UserContext.jsx";
 
 const ProductEditForm = () => {
+  const [shop, setShop] = useState({});
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -17,7 +18,6 @@ const ProductEditForm = () => {
     length: 0,
     width: 0,
     height: 0,
-    shop: "698b75fa172dc49944747d25",
   });
 
   const { productId } = useParams();
@@ -30,7 +30,19 @@ const ProductEditForm = () => {
     const fetchProduct = async () => {
       try {
         const fetchedProduct = await productService.getProduct(productId);
-        setFormData(fetchedProduct);
+        setFormData({
+          name: fetchedProduct.name,
+          description: fetchedProduct.description,
+          price: fetchedProduct.price,
+          brand: fetchedProduct.brand,
+          sku: fetchedProduct.sku,
+          imgURL: fetchedProduct.imgURL || "",
+          weight: fetchedProduct.weight || 0,
+          length: fetchedProduct.length || 0,
+          width: fetchedProduct.width || 0,
+          height: fetchedProduct.height || 0,
+        });
+        setShop(fetchedProduct.shop);
       } catch (error) {
         console.log(error);
       }
@@ -54,13 +66,14 @@ const ProductEditForm = () => {
         productId,
         formData,
       );
-      navigate("/products");
+      navigate(`/shops/${shop._id}`);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <div>
+      <h2>{shop.name}</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name</label>
@@ -168,14 +181,7 @@ const ProductEditForm = () => {
           />
         </div>
 
-        <input
-          type="hidden"
-          name="shop"
-          id="shop"
-          value="698b75fa172dc49944747d25"
-          onChange={handleChange}
-        ></input>
-        <button type="submit">Edit Product</button>
+        <button type="submit">Save Product</button>
       </form>
     </div>
   );

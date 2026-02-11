@@ -2,10 +2,16 @@ import { useState, useContext } from "react";
 import * as productService from "../../../services/productService.js";
 import * as shopService from "../../../services/shopService.js";
 
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation, Link } from "react-router";
 import { UserContext } from "../../../contexts/UserContext.jsx";
 
 const ProductCreateForm = () => {
+  const { user } = useContext(UserContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const shop = location?.state?.shop;
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -17,12 +23,28 @@ const ProductCreateForm = () => {
     length: 0,
     width: 0,
     height: 0,
-    shop: "698b75fa172dc49944747d25",
+    shop,
   });
 
-  const { user } = useContext(UserContext);
+  if (!shop) {
+    // Create product page was not accessed from a shop page
+    // Show error message
+    return (
+      <>
+        <h3>Must create a product from link on a shop's page</h3>;
+        <Link to="/">Click here to return to homepage</Link>
+      </>
+    );
+  }
 
-  const navigate = useNavigate();
+  if (!user) {
+    return (
+      <main>
+        <p>Please sign in to access this page.</p>
+        <Link to="/sign-in">Sign In</Link>
+      </main>
+    );
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,13 +58,15 @@ const ProductCreateForm = () => {
     try {
       e.preventDefault();
       const createdProduct = await productService.createProduct(formData);
-      navigate("/products");
+      navigate(`/shops/${shop._id}`);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     <div>
+      <h2>{location.state?.shop.name}</h2>
+      <h3>New Product</h3>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name</label>
@@ -149,21 +173,7 @@ const ProductCreateForm = () => {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <input
-            type="number"
-            id="height"
-            name="height"
-            value={formData.height}
-            onChange={handleChange}
-          />
-        </div>
-        <input
-          type="hidden"
-          name="shop"
-          id="shop"
-          value="698b75fa172dc49944747d25"
-        ></input>
+        <input type="hidden" name="shop" id="shop" value={shop._id}></input>
         <button type="submit">Add Product</button>
       </form>
     </div>
