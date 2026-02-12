@@ -50,8 +50,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  -webkit-line-clamp: 2; /* two lines before truncating w/ ... (as defined in text-overflow: ellipsis above) */
+  -webkit-box-orient: vertical; /* specifies that the above clamps apply to vertical linespace rather than horizontal */
 }
 
 .shop-price {
