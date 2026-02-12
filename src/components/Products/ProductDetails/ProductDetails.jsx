@@ -1,32 +1,18 @@
 import { useState, useEffect } from "react";
 import * as productService from "../../../services/productService.js";
 import { useParams, Link, useNavigate } from "react-router";
+import "./ProductDetails.css";
 
 const ProductDetails = ({ user }) => {
-  const [product, setProduct] = useState({
-    name: "",
-    category: "",
-    description: "",
-    price: 0,
-    brand: "",
-    sku: "",
-    imgURL: "",
-    weight: 0,
-    length: 0,
-    width: 0,
-    height: 0,
-    shop: {},
-    category: {},
-  });
+  const [product, setProduct] = useState(null);
   const { productId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const product = await productService.getProduct(productId);
-        setProduct(product);
-        console.log(product);
+        const productData = await productService.getProduct(productId);
+        setProduct(productData);
       } catch (error) {
         console.log(error);
       }
@@ -41,7 +27,7 @@ const ProductDetails = ({ user }) => {
 
   if (!product)
     return (
-      <main>
+      <main className="product-details-page">
         <p>Loading...</p>
       </main>
     );
@@ -49,71 +35,82 @@ const ProductDetails = ({ user }) => {
   const isOwner = product.user === user?._id || product.user?._id === user?._id;
 
   return (
-    <div>
-      <header>
-        <h3>{product.name}</h3>
-        <p>Shop: {product.shop.name}</p>
-        <p>Category: {product.category.name}</p>
+    <main className="product-details-page">
+      <div className="product-header-card">
+        <div className="product-title-group">
+          <h1>{product.name}</h1>
+          <p className="shop-breadcrumb">
+            Shop: <span>{product.shop.name}</span>
+          </p>
+          <p>Category: {product.category.name}</p>
+        </div>
         {isOwner && (
-          <>
-            <button>
-              <Link to={`/products/${product._id}/edit`}>Edit</Link>
+          <div className="product-actions">
+            <Link to={`/products/${product._id}/edit`} className="edit-link">
+              Edit Product
+            </Link>
+            <button onClick={handleDelete} className="delete-btn">
+              Delete
             </button>
-            <button onClick={handleDelete}>Delete</button>
-          </>
+          </div>
         )}
-      </header>
-      <main>
-        <section>
-          <p>
-            <b>Description</b>: {product.description}
-          </p>
+      </div>
+
+      <div className="product-main-content">
+        <section className="details-box">
+          <div className="info-group">
+            <h2>Description</h2>
+            <p>{product.description}</p>
+          </div>
+
+          <div className="specs-grid">
+            <div className="spec-item">
+              <span className="label">Price</span>
+              <span className="value price-tag">${product.price}</span>
+            </div>
+            <div className="spec-item">
+              <span className="label">Brand</span>
+              <span className="value">{product.brand}</span>
+            </div>
+            <div className="spec-item">
+              <span className="label">SKU</span>
+              <span className="value">{product.sku}</span>
+            </div>
+          </div>
+
+          <div className="shipping-info">
+            {product.weight > 0 && (
+              <p>
+                <b>Weight:</b> {product.weight} lbs
+              </p>
+            )}
+            {product.length > 0 && (
+              <p>
+                <b>Dimensions:</b> {product.length}" x {product.width}" x{" "}
+                {product.height}"
+              </p>
+            )}
+          </div>
         </section>
 
-        <section>
-          <p>
-            <b>Price:</b> ${product.price}
-          </p>
-          <p>
-            <b>Brand:</b> {product.brand}
-          </p>
-          <p>
-            <b>SKU:</b> {product.sku}
-          </p>
-        </section>
-
-        <section>
-          {typeof product.weight === "number" ? (
-            <p>
-              <b>Weight:</b> {product.weight} lbs
-            </p>
+        <section className="image-box">
+          {product.imgURL ? (
+            <img src={product.imgURL} alt={product.name} />
           ) : (
-            ""
-          )}
-          {product?.length > 0 && product?.width > 0 && product?.height > 0 ? (
-            <p>
-              <b>Dimensions:</b> ({product.length})x({product.width})x($
-              {product.height})
-            </p>
-          ) : (
-            ""
+            <div className="image-placeholder">
+              <p>📸 Image Placeholder</p>
+            </div>
           )}
         </section>
+      </div>
 
-        <button>
-          <Link to={`/shops/${product.shop._id}`}>To Shop</Link>
-        </button>
-      </main>
-    </div>
+      <div className="footer-nav">
+        <Link to={`/shops/${product.shop._id}`} className="back-link">
+          ← Back to {product.shop.name}
+        </Link>
+      </div>
+    </main>
   );
-
-  //   return product?.name ? (
-  //     <h3>Loading...</h3>
-  //   ) : (
-  //     <div>
-  //       <h3>{product.name}</h3>
-  //     </div>
-  //   );
 };
 
 export default ProductDetails;
