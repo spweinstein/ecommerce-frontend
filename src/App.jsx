@@ -5,16 +5,14 @@ import NavBar from "./components/NavBar/NavBar.jsx";
 import SignUpForm from "./components/SignUpForm/SignUpForm.jsx";
 import SignInForm from "./components/SignInForm/SignInForm.jsx";
 import Landing from "./components/Landing/Landing.jsx";
-import Dashboard from "./components/Dashboard/Dashboard.jsx";
 
-import ShopList from "./components/Shops/ShopList/ShopList.jsx";
 import ShopCreateForm from "./components/Shops/ShopCreateForm/ShopCreateForm.jsx";
 import ShopDetails from "./components/Shops/ShopDetails/ShopDetails.jsx";
 import ShopEditForm from "./components/Shops/ShopEditForm/ShopEditForm.jsx";
 import ShopGrid from "./components/Shops/ShopGrid/ShopGrid.jsx";
 
 import ProductGrid from "./components/Products/ProductGrid/ProductGrid.jsx";
-import ProductList from "./components/Products/ProductList/ProductList.jsx";
+
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails.jsx";
 import ProductCreateForm from "./components/Products/ProductCreateForm/ProductCreateForm.jsx";
 import ProductEditForm from "./components/Products/ProductEditForm/ProductEditForm.jsx";
@@ -26,10 +24,7 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        <Route
-          path="/"
-          element={user ? <Landing user={user} /> : <Landing />}
-        />
+        <Route path="/" element={<Landing user={user} />} />
         <Route path="/sign-up" element={<SignUpForm />} />
         <Route path="/sign-in" element={<SignInForm />} />
 

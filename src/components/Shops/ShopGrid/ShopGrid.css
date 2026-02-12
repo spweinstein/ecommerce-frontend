@@ -1,53 +1,79 @@
 .shop-grid-container {
-  width: 100%;
-  container-type: inline-size;
-  container-name: shop-grid;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.shop-grid-header {
+.grid-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 3px solid #f3e5f5;
+  padding-bottom: 1rem;
 }
 
-.shop-grid-header h3 {
+.grid-header h1 {
+  color: #4527a0;
+  font-size: 2.5rem;
   margin: 0;
-  font-size: 1.5rem;
 }
 
-.new-shop-btn {
-  padding: 0.5rem 1rem;
-  background: #2563eb;
+.create-shop-btn {
+  background-color: #b39ddb;
   color: white;
+  padding: 12px 24px;
+  border-radius: 12px;
   text-decoration: none;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: background 0.2s;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(106, 27, 154, 0.2);
 }
 
-.new-shop-btn:hover {
-  background: #1d4ed8;
+.create-shop-btn:hover {
+  background-color: #9575cd;
+  transform: translateY(-2px);
 }
 
-.no-shops {
-  text-align: center;
-  padding: 3rem;
-  color: #666;
-  font-size: 1.125rem;
-}
-
-/* Fixed number of columns that adjust with breakpoints */
 .shop-grid {
   display: grid;
-  grid-template-columns: 1fr; /* 4 columns by default */
-  gap: 1.5rem;
-  max-width: 95vw;
-  margin: 0 2vw;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
-@container (min-width: 768px) {
-  .shop-grid {
-    grid-template-columns: repeat(2, 1fr); /* 1 column on mobile */
-  }
+.shop-card {
+  background: white;
+  border: 1px solid #ede7f6;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.shop-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border-color: #b39ddb;
+}
+
+.shop-card h3 {
+  color: #6a1b9a;
+  margin-top: 0;
+}
+
+.shop-card p {
+  color: #666;
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+.view-details {
+  margin-top: 15px;
+  color: #b39ddb;
+  font-weight: 700;
+  font-size: 0.9rem;
 }

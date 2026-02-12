@@ -1,46 +1,50 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import * as shopService from "../../../services/shopService";
-import ShopCard from "../ShopCard/ShopCard.jsx";
 import "./ShopGrid.css";
 
 const ShopGrid = () => {
   const [shops, setShops] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchShops = async () => {
       try {
-        const shopsData = await shopService.getShops();
-        setShops(shopsData);
-        setIsLoading(false);
+        const shopData = await shopService.getShops();
+        setShops(shopData);
       } catch (err) {
         console.error(err);
-        setIsLoading(false);
       }
     };
     fetchShops();
   }, []);
 
   return (
-    <div className="shop-grid-container">
-      <div className="shop-grid-header">
-        <h3>Shops</h3>
-        <Link to="/shops/new" className="new-shop-btn">
-          New Shop
+    <main className="shop-grid-container">
+      <header className="grid-header">
+        <h1>All Shops</h1>
+        <Link to="/shops/new" className="create-shop-btn">
+          ➕ Create New Shop
         </Link>
-      </div>
+      </header>
 
-      {shops.length > 0 ? (
-        <div className="shop-grid">
-          {shops.map((shop) => (
-            <ShopCard key={shop._id} shop={shop} />
-          ))}
-        </div>
-      ) : (
-        <div className="no-shops">No shops yet</div>
-      )}
-    </div>
+      <div className="shop-grid">
+        {shops.length > 0 ? (
+          shops.map((shop) => (
+            <Link
+              to={`/shops/${shop._id}`}
+              key={shop._id}
+              className="shop-card"
+            >
+              <h3>{shop.name}</h3>
+              <p>{shop.description.substring(0, 60)}...</p>
+              <span className="view-details">View Shop →</span>
+            </Link>
+          ))
+        ) : (
+          <p>No shops found. Start by creating one!</p>
+        )}
+      </div>
+    </main>
   );
 };
 
