@@ -1,89 +1,84 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
-import { signUp } from "../../services/authService.js";
-import { UserContext } from "../../contexts/UserContext.jsx";
+import "./SignupForm.css";
 
-const SignUpForm = () => {
-  const [message, setMessage] = useState("");
+const SignupForm = ({ handleSignup }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     passwordConf: "",
   });
 
-  const navigate = useNavigate();
-  const { setUser } = useContext(UserContext);
-
-  const { username, password, passwordConf } = formData;
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setMessage("");
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (evt) => {
-    evt.preventDefault();
-    try {
-      const newUser = await signUp(formData);
-      setUser(newUser);
-      navigate("/");
-    } catch (err) {
-      setMessage(err.message);
-    }
-  };
-
-  const isFormInvalid = () => {
-    return !(username && password && password === passwordConf);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSignup(formData);
   };
 
   return (
-    <main>
-      <h1>Sign Up</h1>
-      <p>{message}</p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            name="username"
-            onChange={handleChange}
-            required
-          />
+    <main className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1>SIGN UP</h1>
+          <p>CREATE YOUR EXCLUSIVE ACCOUNT</p>
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            name="password"
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="confirm">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirm"
-            value={passwordConf}
-            name="passwordConf"
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <button type="submit" disabled={isFormInvalid()}>
-            Sign Up
-          </button>
-          <button onClick={() => navigate("/")}>Cancel</button>
-        </div>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Enter username"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="••••••••"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="passwordConf">Confirm Password</label>
+            <input
+              type="password"
+              id="passwordConf"
+              name="passwordConf"
+              value={formData.passwordConf}
+              onChange={handleChange}
+              placeholder="••••••••"
+              required
+            />
+          </div>
+          <div className="auth-actions">
+            <button type="submit" className="main-btn">
+              CREATE ACCOUNT
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate("/")}
+              className="cancel-btn"
+            >
+              CANCEL
+            </button>
+          </div>
+        </form>
+      </div>
     </main>
   );
 };
 
-export default SignUpForm;
+export default SignupForm;

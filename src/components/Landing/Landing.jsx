@@ -1,22 +1,21 @@
 import "./Landing.css";
 
-const Landing = ({ user }) => {
+const Landing = () => {
   return (
     <main className="landing-page">
-      {user ? (
-        <div className="welcome-hero-box">
-          <h1>🛍️ Welcome, {user.username}!</h1>
-          <p>
-            You are now logged into your dashboard. Manage your shops and
-            products below.
-          </p>
+      <div className="hero-layout">
+        <div className="text-header">
+          <h1>WELCOME TO OUR EXCLUSIVE SHOPPING PAGE</h1>
+          <p>EXPERIENCE THE NEXT GENERATION OF E-COMMERCE</p>
         </div>
-      ) : (
-        <div className="guest-hero-box">
-          <h1>Hello, you are on the landing page for visitors.</h1>
-          <p>Sign up now, or sign in to see your super secret dashboard!</p>
+
+        <div className="image-frame">
+          <img
+            src="https://img.pikbest.com/wp/202408/website-online-shopping-in-denmark-an-impressive-3d-render-for-social-media-and-websites_9737255.jpg!sw800"
+            alt="3D Shopping Render"
+          />
         </div>
-      )}
+      </div>
     </main>
   );
 };

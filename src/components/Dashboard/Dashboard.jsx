@@ -1,36 +1,24 @@
-import { useContext, useState, useEffect } from "react";
-import { getUsers } from "../../services/userService.js";
+import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext.jsx";
 
 const Dashboard = () => {
-  const [users, setUsers] = useState([]);
-
   const { user } = useContext(UserContext);
 
-  const fetchUsers = async () => {
-    try {
-      const fetchedUsers = await getUsers();
-      setUsers(fetchedUsers);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
   return (
-    <main>
-      <h1>Welcome, {user.username}</h1>
-      <p>
-        This is the dashboard page where you can see a list of all the users.
-      </p>
-      <ul>
-        {users.map((userData) => (
-          <li key={userData._id}>{userData.username}</li>
-        ))}
-      </ul>
+    <main className="landing-page">
+      <div className="hero-layout">
+        <div className="text-header">
+          <h1>WELCOME, {user.username?.toUpperCase()}</h1>
+          <p>SECURE SESSION ACTIVE</p>
+        </div>
+
+        <div className="image-frame">
+          <img
+            src="https://img.pikbest.com/wp/202408/website-online-shopping-in-denmark-an-impressive-3d-render-for-social-media-and-websites_9737255.jpg!sw800"
+            alt="3D Shopping Render"
+          />
+        </div>
+      </div>
     </main>
   );
 };

@@ -1,77 +1,51 @@
-.product-grid-container {
-  width: 100%;
-  container-type: inline-size;
-  container-name: product-grid;
+.product-section {
+  padding: 60px 0;
+  background-color: #ffffff;
 }
 
-.product-grid-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.product-grid-header h3 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.new-product-btn {
-  padding: 0.5rem 1rem;
-  background: #2563eb;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: background 0.2s;
-}
-
-.new-product-btn:hover {
-  background: #1d4ed8;
-}
-
-.no-products {
-  text-align: center;
-  padding: 3rem;
-  color: #666;
-  font-size: 1.125rem;
-}
-
-/* Fixed number of columns that adjust with breakpoints */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 4 columns by default */
-  gap: 1.5rem;
-  max-width: 95vw;
-  margin: 0 2vw;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 30px;
 }
 
-@container (max-width: 2400px) {
-  .product-grid {
-    grid-template-columns: repeat(5, 1fr); /* 3 columns on medium screens */
-  }
+.product-card {
+  background: #fafafa;
+  border: 1px solid #eee;
+  padding: 25px;
+  border-radius: 15px;
+  transition: 0.3s ease;
+  text-align: left;
 }
 
-@container (max-width: 1800px) {
-  .product-grid {
-    grid-template-columns: repeat(4, 1fr); /* 3 columns on medium screens */
-  }
+.product-card:hover {
+  background: #ffffff;
+  border-color: #000;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
 }
 
-@container (max-width: 1200px) {
-  .product-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
-  }
+.product-card h3 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  color: #000;
 }
 
-@container (max-width: 768px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
-  }
+.product-price {
+  font-weight: 700;
+  color: #000;
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 5px;
 }
 
-@container (max-width: 480px) {
-  .product-grid {
-    grid-template-columns: 1fr; /* 1 column on mobile */
-  }
+.product-card .category {
+  font-size: 0.65rem;
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  display: block;
 }
