@@ -1,15 +1,13 @@
 import { useState, useContext, useEffect } from "react";
 import * as productService from "../../../services/productService.js";
-import * as shopService from "../../../services/shopService.js";
 import { getProductCategories } from "../../../services/productCategoryService.js";
-
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, Link } from "react-router";
 import { UserContext } from "../../../contexts/UserContext.jsx";
+import "./ProductEditForm.css";
 
 const ProductEditForm = () => {
   const [shop, setShop] = useState({});
   const [productCategories, setProductCategories] = useState([]);
-
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -25,9 +23,7 @@ const ProductEditForm = () => {
   });
 
   const { productId } = useParams();
-
   const { user } = useContext(UserContext);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,19 +41,18 @@ const ProductEditForm = () => {
           length: fetchedProduct.length || 0,
           width: fetchedProduct.width || 0,
           height: fetchedProduct.height || 0,
-          category: fetchedProduct.category._id,
+          category: fetchedProduct.category?._id || fetchedProduct.category,
         });
         setShop(fetchedProduct.shop);
       } catch (error) {
         console.log(error);
       }
     };
-
     fetchProduct();
   }, [productId]);
 
   useEffect(() => {
-    if (!shop.industry) return;
+    if (!shop?.industry) return;
     const fetchProductCategories = async (industryId) => {
       try {
         const fetchedProductCategories = await getProductCategories(industryId);
@@ -80,10 +75,7 @@ const ProductEditForm = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const createdProduct = await productService.updateProduct(
-        productId,
-        formData,
-      );
+      await productService.updateProduct(productId, formData);
       navigate(`/products/${productId}`);
     } catch (error) {
       console.log(error);
@@ -91,138 +83,154 @@ const ProductEditForm = () => {
   };
 
   return (
-    <div>
-      <h2>{shop.name}</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="category">Product Category</label>
-          <select
-            name="category"
-            id="category"
-            required
-            onChange={handleChange}
-            value={formData.category}
-          >
-            <option value="">-- Select an option --</option>
+    <main className="product-form-container">
+      <div className="product-form-card">
+        <header className="product-form-header">
+          <p>{shop?.name}</p>
+          <h1>Edit Product</h1>
+        </header>
 
-            {productCategories?.length > 0
-              ? productCategories.map((productCategory) => (
-                  <option key={productCategory._id} value={productCategory._id}>
-                    {productCategory.name}
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="name">Product Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-row">
+            <div className="input-group">
+              <label htmlFor="category">Category</label>
+              <select
+                name="category"
+                id="category"
+                required
+                onChange={handleChange}
+                value={formData.category}
+              >
+                <option value="">-- Select --</option>
+                {productCategories?.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
                   </option>
-                ))
-              : ""}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="price">Price</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="brand">Brand</label>
-          <input
-            type="text"
-            id="brand"
-            name="brand"
-            value={formData.brand}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="sku">SKU</label>
-          <input
-            type="text"
-            id="sku"
-            name="sku"
-            value={formData.sku}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="imgURL">Image URL</label>
-          <input
-            type="text"
-            id="imgURL"
-            name="imgURL"
-            value={formData.imgURL}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="weight">Weight</label>
-          <input
-            type="number"
-            id="weight"
-            name="weight"
-            value={formData.weight}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="length">Length</label>
-          <input
-            type="number"
-            id="length"
-            name="length"
-            value={formData.length}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="width">Width</label>
-          <input
-            type="number"
-            id="width"
-            name="width"
-            value={formData.width}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="height">Height</label>
-          <input
-            type="number"
-            id="height"
-            name="height"
-            value={formData.height}
-            onChange={handleChange}
-          />
-        </div>
+                ))}
+              </select>
+            </div>
+            <div className="input-group">
+              <label htmlFor="price">Price</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                value={formData.price}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
 
-        <button type="submit">Save Product</button>
-      </form>
-    </div>
+          <div className="input-group">
+            <label htmlFor="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-row">
+            <div className="input-group">
+              <label htmlFor="brand">Brand</label>
+              <input
+                type="text"
+                id="brand"
+                name="brand"
+                value={formData.brand}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="sku">SKU</label>
+              <input
+                type="text"
+                id="sku"
+                name="sku"
+                value={formData.sku}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="imgURL">Image URL</label>
+            <input
+              type="text"
+              id="imgURL"
+              name="imgURL"
+              value={formData.imgURL}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-row-four">
+            <div className="input-group">
+              <label>Weight</label>
+              <input
+                type="number"
+                name="weight"
+                value={formData.weight}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group">
+              <label>Length</label>
+              <input
+                type="number"
+                name="length"
+                value={formData.length}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group">
+              <label>Width</label>
+              <input
+                type="number"
+                name="width"
+                value={formData.width}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group">
+              <label>Height</label>
+              <input
+                type="number"
+                name="height"
+                value={formData.height}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="form-actions">
+            <button type="submit" className="submit-btn">
+              Save Changes
+            </button>
+            <Link to={`/products/${productId}`} className="cancel-btn">
+              Discard Changes
+            </Link>
+          </div>
+        </form>
+      </div>
+    </main>
   );
 };
 
