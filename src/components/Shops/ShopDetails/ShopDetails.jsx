@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router";
 import * as shopService from "../../../services/shopService";
 import ProductList from "../../Products/ProductList/ProductList.jsx";
+import ProductGrid from "../../Products/ProductGrid/ProductGrid.jsx";
 import "./ShopDetails.css";
 
 const ShopDetails = ({ user }) => {
@@ -64,6 +65,8 @@ const ShopDetails = ({ user }) => {
         </p>
       </section>
 
+      
+
       <section>
         <h2>Location</h2>
         {shop.address ? (
@@ -84,7 +87,7 @@ const ShopDetails = ({ user }) => {
       </section>
 
       <section>
-        <ProductList shop={shop} user={user} />
+        <ProductGrid shop={shop} user={user} />
       </section>
 
       <Link to="/shops" className="back-link">

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import * as productService from "../../../services/productService.js";
 import { Link } from "react-router";
+import ProductCard from "../ProductCard/ProductCard.jsx";
+import "./ProductGrid.css";
 
-const ProductList = ({ shop, user }) => {
+const ProductGrid = ({ shop, user }) => {
   const [products, setProducts] = useState([]);
   // console.log(shop.user, user._id);
 
@@ -25,37 +27,27 @@ const ProductList = ({ shop, user }) => {
   }, [shop]);
 
   return (
-    <>
-      <h3>Products</h3>
-      {shop && user && shop.user === user._id ? (
-        <button>
-          <Link to="/products/new" state={{ shop }}>
+    <div className="product-grid-container">
+      <div className="product-grid-header">
+        <h3>Products</h3>
+        {shop && user && shop.user === user._id && (
+          <Link to="/products/new" state={{ shop }} className="new-product-btn">
             New Product
           </Link>
-        </button>
-      ) : (
-        ""
-      )}
+        )}
+      </div>
+
       {products.length > 0 ? (
-        <>
-          <ul>
-            {products.map((product) => (
-              <li key={product._id}>
-                <Link to={`/products/${product._id}`}>{product.name}</Link>
-              </li>
-            ))}
-          </ul>
-        </>
+        <div className="product-grid">
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
       ) : (
-        <div>No products yet</div>
+        <div className="no-products">No products yet</div>
       )}
-    </>
+    </div>
   );
 };
 
-export default ProductList;
-
-
-
-
-
+export default ProductGrid;

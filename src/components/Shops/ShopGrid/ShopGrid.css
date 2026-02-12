@@ -1,0 +1,53 @@
+.shop-grid-container {
+  width: 100%;
+  container-type: inline-size;
+  container-name: shop-grid;
+}
+
+.shop-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.shop-grid-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.new-shop-btn {
+  padding: 0.5rem 1rem;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.new-shop-btn:hover {
+  background: #1d4ed8;
+}
+
+.no-shops {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  font-size: 1.125rem;
+}
+
+/* Fixed number of columns that adjust with breakpoints */
+.shop-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* 4 columns by default */
+  gap: 1.5rem;
+  max-width: 95vw;
+  margin: 0 2vw;
+}
+
+@container (min-width: 768px) {
+  .shop-grid {
+    grid-template-columns: repeat(2, 1fr); /* 1 column on mobile */
+  }
+}
