@@ -31,11 +31,10 @@ const ShopGrid = () => {
       }
     };
     fetchIndustries();
-  }, [shops]);
+  }, []);
 
   const handleChange = (e) => {
-    const { value } = e.target;
-    setSelectedIndustry(value);
+    setSelectedIndustry(e.target.value);
   };
 
   return (
@@ -45,20 +44,16 @@ const ShopGrid = () => {
           <h1>ALL SHOPS</h1>
           <p>CURATED SELECTION</p>
         </div>
-        <Link to="/shops/new" className="create-shop-box">
-          <span className="plus-icon">+</span>
-          <span className="create-text">CREATE NEW SHOP</span>
-        </Link>
-        <div>
-          <label htmlFor="industry">Filter Industry</label>
+
+        <div className="filter-box">
+          <label htmlFor="industry">Industry</label>
           <select
             name="industry"
             id="industry"
-            required
             onChange={handleChange}
+            value={selectedIndustry}
           >
-            <option value="">-- Select an option --</option>
-
+            <option value="">ALL INDUSTRIES</option>
             {industries.map((industry) => (
               <option key={industry._id} value={industry._id}>
                 {industry.name}
@@ -66,6 +61,11 @@ const ShopGrid = () => {
             ))}
           </select>
         </div>
+
+        <Link to="/shops/new" className="create-shop-box">
+          <span className="plus-icon">+</span>
+          <span className="create-text">CREATE NEW SHOP</span>
+        </Link>
       </header>
 
       <div className="shop-grid">
@@ -77,7 +77,7 @@ const ShopGrid = () => {
               className="shop-card"
             >
               <h2>{shop.name}</h2>
-              <p>{shop.description.substring(0, 60)}...</p>
+              <p>{shop.description?.substring(0, 60)}...</p>
               <span className="view-shop-btn">VIEW SHOP</span>
             </Link>
           ))
