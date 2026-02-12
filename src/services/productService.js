@@ -1,11 +1,10 @@
 import api from "./apiConfig.js";
 
-export const getProducts = async (shopId) => {
+export const getProducts = async (shopId = null, productCategoryId = null) => {
   try {
-    // console.log(shopId);
-    let query = "/products";
-    if (shopId) query += "?shopId=" + shopId;
-    const { data } = await api.get(query);
+    const { data } = await api.get("/products", {
+      params: { shopId, productCategoryId },
+    });
     if (data.err) throw new Error(data.err);
     return data;
   } catch (error) {

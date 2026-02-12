@@ -1,14 +1,12 @@
 import api from "./apiConfig.js";
 
-
-
-
-
-
-
-export const getShops = async () => {
+export const getShops = async (industryId) => {
   try {
-    const { data } = await api.get("/shops");
+    const { data } = await api.get("/shops", {
+      params: {
+        industry: industryId,
+      },
+    });
     return data;
   } catch (error) {
     console.error(error);
