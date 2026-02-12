@@ -1,6 +1,6 @@
 .shop-grid-container {
   max-width: 1200px;
-  margin: 120px auto;
+  margin: 40px auto;
   padding: 0 40px;
   background-color: #ffffff;
 }
@@ -12,13 +12,10 @@
   margin-bottom: 60px;
   border-bottom: 1px solid #eee;
   padding-bottom: 30px;
+  gap: 20px;
 }
 
-.header-text {
-  text-align: left;
-}
-
-.shop-grid-header h1 {
+.header-text h1 {
   font-size: 1.8rem;
   font-weight: 800;
   letter-spacing: 6px;
@@ -27,18 +24,49 @@
   margin: 0;
 }
 
-.shop-grid-header p {
+.header-text p {
   font-size: 0.7rem;
   letter-spacing: 3px;
   color: #999;
   margin-top: 5px;
 }
 
+.filter-box {
+  background: #fafafa;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 200px;
+}
+
+.filter-box label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.filter-box select {
+  border: none;
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  color: #000;
+}
+
 .create-shop-box {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 18px;
+  padding: 12px 20px;
   background: #ffffff;
   border: 1px solid #000;
   border-radius: 8px;
@@ -48,24 +76,13 @@
 
 .create-shop-box:hover {
   background: #000;
-}
-
-.plus-icon {
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: #000;
+  color: #fff;
 }
 
 .create-text {
   font-size: 0.6rem;
   font-weight: 800;
   letter-spacing: 2px;
-  color: #000;
-}
-
-.create-shop-box:hover .plus-icon,
-.create-shop-box:hover .create-text {
-  color: #fff;
 }
 
 .shop-grid {
@@ -104,7 +121,6 @@
   font-size: 0.8rem;
   color: #888;
   line-height: 1.6;
-  letter-spacing: 1px;
 }
 
 .view-shop-btn {
@@ -118,13 +134,4 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   border-radius: 6px;
-}
-
-.no-shops {
-  text-align: center;
-  grid-column: 1 / -1;
-  color: #bbb;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  font-size: 0.8rem;
 }

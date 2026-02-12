@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router";
-import * as shopService from "../../../services/shopService";
-import { getIndustries } from "../../../services/industryService";
+import { useParams, useNavigate, Link } from "react-router";
+import * as shopService from "../../../services/shopService.js";
+import { getIndustries } from "../../../services/industryService.js";
+
+import "./ShopEditForm.css";
 
 const ShopEditForm = () => {
   const navigate = useNavigate();
   const { shopId } = useParams();
+  const [industries, setIndustries] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -16,35 +19,29 @@ const ShopEditForm = () => {
     country: "",
   });
 
-  const [industries, setIndustries] = useState([]);
-
   useEffect(() => {
-    const fetchShop = async () => {
-      const shopData = await shopService.getShop(shopId);
-      // This populates the form with existing data or empty strings if missing
-      setFormData({
-        name: shopData.name || "",
-        industry: shopData.industry._id,
-        description: shopData.description || "",
-        address1: shopData.address?.address1 || shopData.address1 || "",
-        region: shopData.address?.region || shopData.region || "",
-        postalCode: shopData.address?.postalCode || shopData.postalCode || "",
-        country: shopData.address?.country || shopData.country || "",
-      });
-    };
-    fetchShop();
-  }, [shopId]);
-
-  useEffect(() => {
-    const fetchIndustries = async () => {
+    const fetchInitialData = async () => {
       try {
-        const fetchedIndustries = await getIndustries();
+        const [shopData, fetchedIndustries] = await Promise.all([
+          shopService.getShop(shopId),
+          getIndustries(),
+        ]);
+
         setIndustries(fetchedIndustries);
+        setFormData({
+          name: shopData.name || "",
+          industry: shopData.industry?._id || shopData.industry || "",
+          description: shopData.description || "",
+          address1: shopData.address?.address1 || shopData.address1 || "",
+          region: shopData.address?.region || shopData.region || "",
+          postalCode: shopData.address?.postalCode || shopData.postalCode || "",
+          country: shopData.address?.country || shopData.country || "",
+        });
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
-    fetchIndustries();
+    fetchInitialData();
   }, [shopId]);
 
   const handleChange = (evt) => {
@@ -73,86 +70,113 @@ const ShopEditForm = () => {
   };
 
   return (
-    <main>
-      <h1>Edit Shop</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
+    <main className="shop-form-container">
+      <div className="shop-form-card">
+        <header className="shop-form-header">
+          <h1>Edit Shop</h1>
+          <p>Modify your boutique settings</p>
+        </header>
 
-        <div>
-          <label htmlFor="industry">Industry</label>
-          <select
-            name="industry"
-            id="industry"
-            required
-            onChange={handleChange}
-            value={formData.industry}
-          >
-            <option value="">-- Select an option --</option>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="name">Shop Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-            {industries.map((industry) => (
-              <option key={industry._id} value={industry._id}>
-                {industry.name}
-              </option>
-            ))}
-          </select>
-        </div>
+          <div className="input-group">
+            <label htmlFor="industry">Industry</label>
+            <select
+              name="industry"
+              id="industry"
+              value={formData.industry}
+              onChange={handleChange}
+              required
+            >
+              <option value="">-- Select Industry --</option>
+              {industries.map((industry) => (
+                <option key={industry._id} value={industry._id}>
+                  {industry.name}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div>
-          <label htmlFor="description">Description</label>
-          <textarea
-            name="description"
-            id="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className="input-group">
+            <label htmlFor="description">Description</label>
+            <textarea
+              name="description"
+              id="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div>
-          <label htmlFor="address1">Street</label>
-          <input
-            type="text"
-            name="address1"
-            id="address1"
-            value={formData.address1}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="input-group">
+            <label htmlFor="address1">Street Address</label>
+            <input
+              type="text"
+              name="address1"
+              id="address1"
+              value={formData.address1}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div>
-          <label htmlFor="region">Region</label>
-          <input
-            type="text"
-            name="region"
-            id="region"
-            value={formData.region}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="form-row">
+            <div className="input-group">
+              <label htmlFor="region">Region</label>
+              <input
+                type="text"
+                name="region"
+                id="region"
+                value={formData.region}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="postalCode">Postal Code</label>
+              <input
+                type="text"
+                name="postalCode"
+                id="postalCode"
+                value={formData.postalCode}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
 
-        <div>
-          <label htmlFor="country">Country</label>
-          <input
-            type="text"
-            name="country"
-            id="country"
-            value={formData.country}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="input-group">
+            <label htmlFor="country">Country</label>
+            <input
+              type="text"
+              name="country"
+              id="country"
+              value={formData.country}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <button type="submit">Update Shop</button>
-      </form>
+          <div className="form-actions">
+            <button type="submit" className="submit-btn">
+              Update Boutique
+            </button>
+            <Link to={`/shops/${shopId}`} className="cancel-btn">
+              Discard Changes
+            </Link>
+          </div>
+        </form>
+      </div>
     </main>
   );
 };

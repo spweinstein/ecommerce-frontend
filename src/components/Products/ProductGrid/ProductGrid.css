@@ -1,6 +1,73 @@
-.product-section {
-  padding: 60px 0;
-  background-color: #ffffff;
+.product-grid-container {
+  padding: 40px 0;
+}
+
+.product-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  gap: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+}
+
+.product-grid-header h3 {
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.filter-group {
+  display: flex;
+  gap: 15px;
+}
+
+.product-filter-box {
+  background: #fafafa;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-filter-box label {
+  font-size: 0.55rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 4px;
+}
+
+.product-filter-box select {
+  border: none;
+  background: transparent;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  outline: none;
+  color: #000;
+}
+
+.new-product-btn {
+  padding: 12px 24px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.new-product-btn:hover {
+  background: #333;
 }
 
 .product-grid {
@@ -9,43 +76,11 @@
   gap: 30px;
 }
 
-.product-card {
-  background: #fafafa;
-  border: 1px solid #eee;
-  padding: 25px;
-  border-radius: 15px;
-  transition: 0.3s ease;
-  text-align: left;
-}
-
-.product-card:hover {
-  background: #ffffff;
-  border-color: #000;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
-}
-
-.product-card h3 {
-  font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  color: #000;
-}
-
-.product-price {
-  font-weight: 700;
-  color: #000;
-  font-size: 1.1rem;
-  display: block;
-  margin-bottom: 5px;
-}
-
-.product-card .category {
-  font-size: 0.65rem;
+.no-products {
+  text-align: center;
+  padding: 60px;
   color: #bbb;
   text-transform: uppercase;
   letter-spacing: 2px;
-  margin-bottom: 15px;
-  display: block;
+  font-size: 0.8rem;
 }

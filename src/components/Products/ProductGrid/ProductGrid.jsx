@@ -10,7 +10,7 @@ const ProductGrid = ({ shop, user }) => {
   const [products, setProducts] = useState([]);
   const [industries, setIndustries] = useState([]);
   const [selectedIndustry, setSelectedIndustry] = useState(
-    shop && shop?.industry ? shop.industry._id : "",
+    shop?.industry?._id || "",
   );
   const [productCategories, setProductCategories] = useState([]);
   const [selectedProductCategory, setSelectedProductCategory] = useState("");
@@ -22,7 +22,7 @@ const ProductGrid = ({ shop, user }) => {
           shop?._id,
           selectedProductCategory,
         );
-        setProducts(fetchedProducts);
+        setProducts(fetchedProducts || []);
       } catch (error) {
         console.log(error);
       }
@@ -59,65 +59,65 @@ const ProductGrid = ({ shop, user }) => {
   }, [selectedIndustry]);
 
   const handleIndustryChange = (e) => {
-    const { value } = e.target;
-    setSelectedIndustry(value);
+    setSelectedIndustry(e.target.value);
   };
 
   const handleProductCategoryChange = (e) => {
-    const { value } = e.target;
-    setSelectedProductCategory(value);
+    setSelectedProductCategory(e.target.value);
   };
 
   return (
     <div className="product-grid-container">
       <div className="product-grid-header">
         <h3>Products</h3>
-        {shop && user && shop.user === user._id && (
-          <Link to="/products/new" state={{ shop }} className="new-product-btn">
-            New Product
-          </Link>
-        )}
 
-        {/* If loading this from a shop page, don't include industry filter - already set */}
-        {shop && shop?.industry ? (
-          ""
-        ) : (
-          <div>
-            <label htmlFor="industry">Filter Industry</label>
+        <div className="filter-group">
+          {!shop && (
+            <div className="product-filter-box">
+              <label htmlFor="industry">Industry</label>
+              <select
+                id="industry"
+                onChange={handleIndustryChange}
+                value={selectedIndustry}
+              >
+                <option value="">ALL INDUSTRIES</option>
+                {industries.map((industry) => (
+                  <option key={industry._id} value={industry._id}>
+                    {industry.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <div className="product-filter-box">
+            <label htmlFor="category">Category</label>
             <select
-              name="industry"
-              id="industry"
-              required
-              onChange={handleIndustryChange}
+              id="category"
+              onChange={handleProductCategoryChange}
+              value={selectedProductCategory}
             >
-              <option value="">-- Select an option --</option>
-
-              {industries.map((industry) => (
-                <option key={industry._id} value={industry._id}>
-                  {industry.name}
+              <option value="">ALL CATEGORIES</option>
+              {productCategories.map((cat) => (
+                <option key={cat._id} value={cat._id}>
+                  {cat.name}
                 </option>
               ))}
             </select>
           </div>
-        )}
-
-        <div>
-          <label htmlFor="category">Product Category</label>
-          <select
-            name="category"
-            id="category"
-            required
-            onChange={handleProductCategoryChange}
-          >
-            <option value="">-- Select an option --</option>
-
-            {productCategories.map((productCategory) => (
-              <option key={productCategory._id} value={productCategory._id}>
-                {productCategory.name}
-              </option>
-            ))}
-          </select>
         </div>
+
+        {shop &&
+          user &&
+          (shop.user === user._id || shop.user?._id === user._id) && (
+            <Link
+              to="/products/new"
+              state={{ shop }}
+              className="new-product-btn"
+            >
+              + NEW PRODUCT
+            </Link>
+          )}
       </div>
 
       {products.length > 0 ? (
