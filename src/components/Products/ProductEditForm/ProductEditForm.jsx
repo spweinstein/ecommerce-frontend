@@ -1,12 +1,15 @@
 import { useState, useContext, useEffect } from "react";
 import * as productService from "../../../services/productService.js";
 import * as shopService from "../../../services/shopService.js";
+import { getProductCategories } from "../../../services/productCategoryService.js";
 
 import { useNavigate, useParams } from "react-router";
 import { UserContext } from "../../../contexts/UserContext.jsx";
 
 const ProductEditForm = () => {
   const [shop, setShop] = useState({});
+  const [productCategories, setProductCategories] = useState([]);
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -18,6 +21,7 @@ const ProductEditForm = () => {
     length: 0,
     width: 0,
     height: 0,
+    category: "",
   });
 
   const { productId } = useParams();
@@ -41,6 +45,7 @@ const ProductEditForm = () => {
           length: fetchedProduct.length || 0,
           width: fetchedProduct.width || 0,
           height: fetchedProduct.height || 0,
+          category: fetchedProduct.category._id,
         });
         setShop(fetchedProduct.shop);
       } catch (error) {
@@ -50,6 +55,19 @@ const ProductEditForm = () => {
 
     fetchProduct();
   }, [productId]);
+
+  useEffect(() => {
+    if (!shop.industry) return;
+    const fetchProductCategories = async (industryId) => {
+      try {
+        const fetchedProductCategories = await getProductCategories(industryId);
+        setProductCategories(fetchedProductCategories);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchProductCategories(shop.industry);
+  }, [shop]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -67,14 +85,11 @@ const ProductEditForm = () => {
         formData,
       );
       navigate(`/products/${productId}`);
-
-
-
-      
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div>
       <h2>{shop.name}</h2>
@@ -89,6 +104,26 @@ const ProductEditForm = () => {
             onChange={handleChange}
             required
           />
+        </div>
+        <div>
+          <label htmlFor="category">Product Category</label>
+          <select
+            name="category"
+            id="category"
+            required
+            onChange={handleChange}
+            value={formData.category}
+          >
+            <option value="">-- Select an option --</option>
+
+            {productCategories?.length > 0
+              ? productCategories.map((productCategory) => (
+                  <option key={productCategory._id} value={productCategory._id}>
+                    {productCategory.name}
+                  </option>
+                ))
+              : ""}
+          </select>
         </div>
         <div>
           <label htmlFor="description">Description</label>
