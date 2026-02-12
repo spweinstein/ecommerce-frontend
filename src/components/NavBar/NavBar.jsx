@@ -25,9 +25,6 @@ const NavBar = () => {
         </li>
         {user ? (
           <>
-            <li>
-              <Link to="/shops/new">Create Shop</Link>
-            </li>
             <li className="welcome-box">
               <span>🛍️ Welcome, {user.username}</span>
             </li>

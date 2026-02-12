@@ -1,58 +1,49 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import * as shopService from "../../../services/shopService";
+import "./ShopList.css";
 
 const ShopList = () => {
   const [shops, setShops] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchShops = async () => {
       try {
-        const shopsData = await shopService.getShops();
-        setShops(shopsData);
-        setIsLoading(false);
+        const shopData = await shopService.getShops();
+        setShops(shopData);
       } catch (err) {
         console.error(err);
-        setIsLoading(false);
       }
     };
     fetchShops();
   }, []);
 
-  if (isLoading)
-    return (
-      <main>
-        <p>Loading shops...</p>
-      </main>
-    );
-
   return (
-    <main>
-      <h1>Shops</h1>
-      {shops.length === 0 ? (
-        <p>No shops found.</p>
-      ) : (
-        <ul>
-          {shops.map((shop) => (
-            <li key={shop._id}>
-              <Link to={`/shops/${shop._id}`}>
-                <article>
-                  <header>
-                    <h2>{shop.name}</h2>
-                  </header>
-                  <p>{shop.description}</p>
-                  {shop.address && (
-                    <p>
-                      {shop.address.city}, {shop.address.country}
-                    </p>
-                  )}
-                </article>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+    <main className="shop-list-container">
+      <header className="list-header">
+        <h1>All Shops</h1>
+        <Link to="/shops/new" className="create-shop-btn">
+          ➕ Create New Shop
+        </Link>
+      </header>
+
+      <div className="shop-grid">
+        {shops.length > 0 ? (
+          shops.map((shop) => (
+            <Link
+              to={`/shops/${shop._id}`}
+              key={shop._id}
+              className="shop-card"
+            >
+              <h3>{shop.name}</h3>
+              <p>{shop.description.substring(0, 60)}...</p>
+              <span className="view-details">View Shop →</span>
+            </Link>
+          ))
+        ) : (
+          <p>No shops found. Start by creating one!</p>
+        )}
+      </div>
     </main>
   );
 };

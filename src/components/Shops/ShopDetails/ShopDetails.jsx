@@ -13,7 +13,6 @@ const ShopDetails = ({ user }) => {
     const fetchShop = async () => {
       try {
         const shopData = await shopService.getShop(shopId);
-        console.log("Backend Shop Data:", shopData);
         setShop(shopData);
       } catch (err) {
         console.error(err);
@@ -41,55 +40,38 @@ const ShopDetails = ({ user }) => {
   const isOwner = shop.user === user?._id || shop.user?._id === user?._id;
 
   return (
-    <main className="shop-details-container">
-      <header>
-        <h1>{shop.name}</h1>
+    <main className="shop-details-page">
+      <div className="shop-header-card">
+        <div className="shop-info">
+          <h1>{shop.name}</h1>
+          <p className="shop-desc">{shop.description}</p>
+          <div className="location-chip">
+            📍 {shop.address?.address1 || shop.address1 || "N/A"},{" "}
+            {shop.address?.region || shop.region || "N/A"}
+          </div>
+        </div>
+
         {isOwner && (
-          <div className="actions">
+          <div className="shop-actions">
             <Link to={`/shops/${shopId}/edit`} className="edit-link">
-              Edit
+              Edit Shop
             </Link>
-            <button onClick={handleDelete} className="delete-button">
+            <button onClick={handleDelete} className="delete-btn">
               Delete
             </button>
           </div>
         )}
-      </header>
+      </div>
 
-      <section>
-        <h2>About</h2>
-        <p>{shop.description}</p>
-        <p>
-          <b>Industry: </b> {shop.industry.name}
-        </p>
-      </section>
-
-      <section>
-        <h2>Location</h2>
-        {shop.address ? (
-          <>
-            <p>
-              Street: {shop.address.address1 || shop.address.street || "N/A"}
-            </p>
-            <p>Region: {shop.address.region || shop.address.city || "N/A"}</p>
-            <p>Country: {shop.address.country || "N/A"}</p>
-          </>
-        ) : (
-          <>
-            <p>Street: {shop.address1 || shop.street || "N/A"}</p>
-            <p>Region: {shop.region || shop.city || "N/A"}</p>
-            <p>Country: {shop.country || "N/A"}</p>
-          </>
-        )}
-      </section>
-
-      <section>
+      <div className="shop-content-section">
         <ProductList shop={shop} user={user} />
-      </section>
+      </div>
 
-      <Link to="/shops" className="back-link">
-        Back to Shops
-      </Link>
+      <div className="footer-nav">
+        <Link to="/shops" className="back-link">
+          ← Back to all shops
+        </Link>
+      </div>
     </main>
   );
 };

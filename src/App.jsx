@@ -5,7 +5,6 @@ import NavBar from "./components/NavBar/NavBar.jsx";
 import SignUpForm from "./components/SignUpForm/SignUpForm.jsx";
 import SignInForm from "./components/SignInForm/SignInForm.jsx";
 import Landing from "./components/Landing/Landing.jsx";
-import Dashboard from "./components/Dashboard/Dashboard.jsx";
 
 import ShopList from "./components/Shops/ShopList/ShopList.jsx";
 import ShopCreateForm from "./components/Shops/ShopCreateForm/ShopCreateForm.jsx";
@@ -24,10 +23,7 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        <Route
-          path="/"
-          element={user ? <Landing user={user} /> : <Landing />}
-        />
+        <Route path="/" element={<Landing user={user} />} />
         <Route path="/sign-up" element={<SignUpForm />} />
         <Route path="/sign-in" element={<SignInForm />} />
 
