@@ -1,5 +1,11 @@
 import api from "./apiConfig.js";
 
+
+
+
+
+
+
 export const getShops = async () => {
   try {
     const { data } = await api.get("/shops");

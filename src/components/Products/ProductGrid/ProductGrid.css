@@ -1,0 +1,77 @@
+.product-grid-container {
+  width: 100%;
+  container-type: inline-size;
+  container-name: product-grid;
+}
+
+.product-grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.product-grid-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.new-product-btn {
+  padding: 0.5rem 1rem;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.new-product-btn:hover {
+  background: #1d4ed8;
+}
+
+.no-products {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+  font-size: 1.125rem;
+}
+
+/* Fixed number of columns that adjust with breakpoints */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 4 columns by default */
+  gap: 1.5rem;
+  max-width: 95vw;
+  margin: 0 2vw;
+}
+
+@container (max-width: 2400px) {
+  .product-grid {
+    grid-template-columns: repeat(5, 1fr); /* 3 columns on medium screens */
+  }
+}
+
+@container (max-width: 1800px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr); /* 3 columns on medium screens */
+  }
+}
+
+@container (max-width: 1200px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+  }
+}
+
+@container (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+}
+
+@container (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
+}

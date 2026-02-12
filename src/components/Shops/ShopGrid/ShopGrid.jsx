@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import * as shopService from "../../../services/shopService";
-import "./ShopList.css";
+import "./ShopGrid.css";
 
-const ShopList = () => {
+const ShopGrid = () => {
   const [shops, setShops] = useState([]);
 
   useEffect(() => {
@@ -19,8 +19,8 @@ const ShopList = () => {
   }, []);
 
   return (
-    <main className="shop-list-container">
-      <header className="list-header">
+    <main className="shop-grid-container">
+      <header className="grid-header">
         <h1>All Shops</h1>
         <Link to="/shops/new" className="create-shop-btn">
           ➕ Create New Shop
@@ -48,4 +48,4 @@ const ShopList = () => {
   );
 };
 
-export default ShopList;
+export default ShopGrid;
