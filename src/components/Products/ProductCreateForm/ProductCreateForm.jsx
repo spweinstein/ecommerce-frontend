@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import * as productService from "../../../services/productService.js";
-import * as shopService from "../../../services/shopService.js";
+import { getProductCategories } from "../../../services/productCategoryService.js";
 
 import { useNavigate, useLocation, Link } from "react-router";
 import { UserContext } from "../../../contexts/UserContext.jsx";
@@ -12,6 +12,7 @@ const ProductCreateForm = () => {
   const location = useLocation();
   const shop = location?.state?.shop;
 
+  const [productCategories, setProductCategories] = useState([]);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -24,7 +25,20 @@ const ProductCreateForm = () => {
     width: 0,
     height: 0,
     shop,
+    productCategory: "",
   });
+
+  useEffect(() => {
+    const fetchProductCategories = async (industryId) => {
+      try {
+        const fetchedProductCategories = await getProductCategories(industryId);
+        setProductCategories(fetchedProductCategories);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetchProductCategories(shop.industry._id);
+  }, []);
 
   if (!shop) {
     // Create product page was not accessed from a shop page
@@ -78,6 +92,23 @@ const ProductCreateForm = () => {
             onChange={handleChange}
             required
           />
+        </div>
+        <div>
+          <label htmlFor="category">Product Category</label>
+          <select
+            name="category"
+            id="category"
+            required
+            onChange={handleChange}
+          >
+            <option value="">-- Select an option --</option>
+
+            {productCategories.map((productCategory) => (
+              <option key={productCategory._id} value={productCategory._id}>
+                {productCategory.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label htmlFor="description">Description</label>
