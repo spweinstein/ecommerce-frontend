@@ -11,13 +11,9 @@ import ShopList from "./components/Shops/ShopList/ShopList.jsx";
 import ShopCreateForm from "./components/Shops/ShopCreateForm/ShopCreateForm.jsx";
 import ShopDetails from "./components/Shops/ShopDetails/ShopDetails.jsx";
 import ShopEditForm from "./components/Shops/ShopEditForm/ShopEditForm.jsx";
+import ShopGrid from "./components/Shops/ShopGrid/ShopGrid.jsx";
+
 import ProductGrid from "./components/Products/ProductGrid/ProductGrid.jsx";
-
-
-
-
-
-
 import ProductList from "./components/Products/ProductList/ProductList.jsx";
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails.jsx";
 import ProductCreateForm from "./components/Products/ProductCreateForm/ProductCreateForm.jsx";
@@ -37,7 +33,7 @@ const App = () => {
         <Route path="/sign-up" element={<SignUpForm />} />
         <Route path="/sign-in" element={<SignInForm />} />
 
-        <Route path="/shops" element={<ShopList />} />
+        <Route path="/shops" element={<ShopGrid />} />
         <Route path="/shops/new" element={<ShopCreateForm />} />
         <Route path="/shops/:shopId" element={<ShopDetails user={user} />} />
         <Route path="/shops/:shopId/edit" element={<ShopEditForm />} />

@@ -6,12 +6,6 @@ const ProductCard = ({ product }) => {
   const placeholderImage =
     "https://t4.ftcdn.net/jpg/06/57/37/01/240_F_657370150_pdNeG5pjI976ZasVbKN9VqH1rfoykdYU.jpg";
 
-
-
-
-
-    
-
   return (
     <Link to={`/products/${product._id}`} className="product-card">
       <div className="product-image-container">

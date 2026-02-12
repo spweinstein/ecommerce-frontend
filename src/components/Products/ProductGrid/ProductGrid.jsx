@@ -4,14 +4,6 @@ import { Link } from "react-router";
 import ProductCard from "../ProductCard/ProductCard.jsx";
 import "./ProductGrid.css";
 
-
-
-
-
-
-
-
-
 const ProductGrid = ({ shop, user }) => {
   const [products, setProducts] = useState([]);
   // console.log(shop.user, user._id);
