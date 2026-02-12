@@ -1,11 +1,10 @@
 .auth-container {
-  height: 100vh;
   width: 100%;
-  background-color: #ffffff;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 80px;
+  padding: 40px 20px;
 }
 
 .auth-card {

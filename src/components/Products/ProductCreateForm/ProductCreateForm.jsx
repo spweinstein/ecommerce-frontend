@@ -1,13 +1,12 @@
 import { useState, useContext, useEffect } from "react";
 import * as productService from "../../../services/productService.js";
 import { getProductCategories } from "../../../services/productCategoryService.js";
-
 import { useNavigate, useLocation, Link } from "react-router";
 import { UserContext } from "../../../contexts/UserContext.jsx";
+import "./ProductCreateForm.css";
 
 const ProductCreateForm = () => {
   const { user } = useContext(UserContext);
-
   const navigate = useNavigate();
   const location = useLocation();
   const shop = location?.state?.shop;
@@ -29,33 +28,55 @@ const ProductCreateForm = () => {
   });
 
   useEffect(() => {
-    const fetchProductCategories = async (industryId) => {
-      try {
-        const fetchedProductCategories = await getProductCategories(industryId);
-        setProductCategories(fetchedProductCategories);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    fetchProductCategories(shop.industry._id);
-  }, []);
+    if (shop?.industry?._id) {
+      const fetchProductCategories = async (industryId) => {
+        try {
+          const fetchedProductCategories =
+            await getProductCategories(industryId);
+          setProductCategories(fetchedProductCategories);
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      fetchProductCategories(shop.industry._id);
+    }
+  }, [shop]);
 
   if (!shop) {
-    // Create product page was not accessed from a shop page
-    // Show error message
     return (
-      <>
-        <h3>Must create a product from link on a shop's page</h3>;
-        <Link to="/">Click here to return to homepage</Link>
-      </>
+      <main className="product-form-container">
+        <div className="product-form-card" style={{ textAlign: "center" }}>
+          <h3>Must create a product from link on a shop's page</h3>
+          <Link
+            to="/"
+            className="cancel-btn"
+            style={{ display: "block", marginTop: "20px" }}
+          >
+            Return to homepage
+          </Link>
+        </div>
+      </main>
     );
   }
 
   if (!user) {
     return (
-      <main>
-        <p>Please sign in to access this page.</p>
-        <Link to="/sign-in">Sign In</Link>
+      <main className="product-form-container">
+        <div className="product-form-card">
+          <p>Please sign in to access this page.</p>
+          <Link
+            to="/sign-in"
+            className="submit-btn"
+            style={{
+              textDecoration: "none",
+              textAlign: "center",
+              display: "block",
+              marginTop: "20px",
+            }}
+          >
+            Sign In
+          </Link>
+        </div>
       </main>
     );
   }
@@ -71,143 +92,162 @@ const ProductCreateForm = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const createdProduct = await productService.createProduct(formData);
+      await productService.createProduct(formData);
       navigate(`/shops/${shop._id}`);
     } catch (error) {
       console.log(error);
     }
   };
-  return (
-    <div>
-      <h2>{location.state?.shop.name}</h2>
-      <h3>New Product</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="category">Product Category</label>
-          <select
-            name="category"
-            id="category"
-            required
-            onChange={handleChange}
-          >
-            <option value="">-- Select an option --</option>
 
-            {productCategories.map((productCategory) => (
-              <option key={productCategory._id} value={productCategory._id}>
-                {productCategory.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="price">Price</label>
-          <input
-            type="number"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="brand">Brand</label>
-          <input
-            type="text"
-            id="brand"
-            name="brand"
-            value={formData.brand}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="sku">SKU</label>
-          <input
-            type="text"
-            id="sku"
-            name="sku"
-            value={formData.sku}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="imgURL">Image URL</label>
-          <input
-            type="text"
-            id="imgURL"
-            name="imgURL"
-            value={formData.imgURL}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="weight">Weight</label>
-          <input
-            type="number"
-            id="weight"
-            name="weight"
-            value={formData.weight}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="length">Length</label>
-          <input
-            type="number"
-            id="length"
-            name="length"
-            value={formData.length}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="width">Width</label>
-          <input
-            type="number"
-            id="width"
-            name="width"
-            value={formData.width}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="height">Height</label>
-          <input
-            type="number"
-            id="height"
-            name="height"
-            value={formData.height}
-            onChange={handleChange}
-          />
-        </div>
-        <input type="hidden" name="shop" id="shop" value={shop._id}></input>
-        <button type="submit">Add Product</button>
-      </form>
-    </div>
+  return (
+    <main className="product-form-container">
+      <div className="product-form-card">
+        <header className="product-form-header">
+          <p>{shop.name}</p>
+          <h1>New Product</h1>
+        </header>
+
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="name">Product Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-row">
+            <div className="input-group">
+              <label htmlFor="productCategory">Category</label>
+              <select
+                name="productCategory"
+                id="productCategory"
+                required
+                onChange={handleChange}
+                value={formData.productCategory}
+              >
+                <option value="">-- Select --</option>
+                {productCategories.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="input-group">
+              <label htmlFor="price">Price</label>
+              <input
+                type="number"
+                id="price"
+                name="price"
+                value={formData.price}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="description">Description</label>
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-row">
+            <div className="input-group">
+              <label htmlFor="brand">Brand</label>
+              <input
+                type="text"
+                id="brand"
+                name="brand"
+                value={formData.brand}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="sku">SKU</label>
+              <input
+                type="text"
+                id="sku"
+                name="sku"
+                value={formData.sku}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="input-group">
+            <label htmlFor="imgURL">Image URL</label>
+            <input
+              type="text"
+              id="imgURL"
+              name="imgURL"
+              value={formData.imgURL}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-row-four">
+            <div className="input-group">
+              <label>Weight</label>
+              <input
+                type="number"
+                name="weight"
+                value={formData.weight}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group">
+              <label>Length</label>
+              <input
+                type="number"
+                name="length"
+                value={formData.length}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group">
+              <label>Width</label>
+              <input
+                type="number"
+                name="width"
+                value={formData.width}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-group">
+              <label>Height</label>
+              <input
+                type="number"
+                name="height"
+                value={formData.height}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="form-actions">
+            <button type="submit" className="submit-btn">
+              Add Product
+            </button>
+            <Link to={`/shops/${shop._id}`} className="cancel-btn">
+              Cancel
+            </Link>
+          </div>
+        </form>
+      </div>
+    </main>
   );
 };
 

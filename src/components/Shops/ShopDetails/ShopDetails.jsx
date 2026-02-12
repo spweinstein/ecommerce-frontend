@@ -33,7 +33,7 @@ const ShopDetails = ({ user }) => {
 
   if (!shop)
     return (
-      <main>
+      <main className="shop-details-page">
         <p>Loading...</p>
       </main>
     );
@@ -45,13 +45,16 @@ const ShopDetails = ({ user }) => {
       <div className="shop-header-card">
         <div className="shop-info">
           <h1>{shop.name}</h1>
-          <p className="shop-desc">{shop.description}</p>
-          <p>
-            <b>Industry: </b> {shop.industry.name}
-          </p>
-          <div className="location-chip">
-            📍 {shop.address?.address1 || shop.address1 || "N/A"},{" "}
-            {shop.address?.region || shop.region || "N/A"}
+
+          <div className="shop-details-box">
+            <p className="shop-desc">{shop.description}</p>
+            <p className="detail-line">
+              <b>Industry</b> {shop.industry?.name || "N/A"}
+            </p>
+            <div className="location-chip">
+              📍 {shop.address?.address1 || shop.address1 || "N/A"},{" "}
+              {shop.address?.region || shop.region || "N/A"}
+            </div>
           </div>
         </div>
 
@@ -70,6 +73,7 @@ const ShopDetails = ({ user }) => {
       <div className="shop-content-section">
         <ProductGrid shop={shop} user={user} />
       </div>
+
       <div className="footer-nav">
         <Link to="/shops" className="back-link">
           ← Back to all shops

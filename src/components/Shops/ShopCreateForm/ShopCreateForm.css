@@ -1,4 +1,4 @@
-.auth-container {
+.shop-form-container {
   width: 100%;
   min-height: 80vh;
   display: flex;
@@ -7,37 +7,46 @@
   padding: 40px 20px;
 }
 
-.auth-card {
+.shop-form-card {
   width: 100%;
-  max-width: 440px;
+  max-width: 600px;
   background: #ffffff;
   padding: 3.5rem;
   border-radius: 30px;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.07);
   border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.shop-form-header {
   text-align: center;
+  margin-bottom: 2.5rem;
 }
 
-.auth-header h1 {
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: 5px;
-  color: #000000;
+.shop-form-header h1 {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
   margin-bottom: 10px;
+  color: #000;
+}
+
+.shop-form-header p {
+  font-size: 0.75rem;
+  color: #999;
+  letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-.auth-header p {
-  font-size: 0.7rem;
-  color: #999;
-  letter-spacing: 3px;
-  margin-bottom: 3rem;
-  text-transform: uppercase;
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
 .input-group {
+  margin-bottom: 1.5rem;
   text-align: left;
-  margin-bottom: 1.8rem;
 }
 
 .input-group label {
@@ -50,32 +59,55 @@
   text-transform: uppercase;
 }
 
-.input-group input {
+.input-group input,
+.input-group select,
+.input-group textarea {
   width: 100%;
   padding: 14px 18px;
   border-radius: 12px;
   border: 1px solid #eeeeee;
   background: #fafafa;
   font-size: 14px;
+  font-family: inherit;
+  transition: 0.3s;
 }
 
-.auth-actions {
+.input-group textarea {
+  height: 100px;
+  resize: none;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: #000;
+  background: #fff;
+}
+
+.form-actions {
+  margin-top: 2.5rem;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-top: 2.5rem;
 }
 
-.main-btn {
-  background: #000000;
-  color: #ffffff;
+.submit-btn {
+  background: #000;
+  color: #fff;
   border: none;
-  padding: 16px;
+  padding: 18px;
   border-radius: 14px;
   font-weight: 800;
   letter-spacing: 3px;
-  cursor: pointer;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #333;
+  transform: translateY(-2px);
 }
 
 .cancel-btn {
