@@ -1,58 +1,119 @@
-.shop-details-container {
-  padding-top: 120px;
+.shop-details-page {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 40px 20px;
 }
 
-.shop-hero-card {
+.shop-header-card {
   background: #ffffff;
-  border: 2px solid #000;
-  padding: 60px;
+  border: 1px solid #eeeeee;
+  padding: 50px;
   border-radius: 30px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 80px;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
 }
 
-.shop-hero-info h1 {
-  font-size: 2.5rem;
+.shop-info h1 {
+  font-size: 3rem;
   font-weight: 900;
-  letter-spacing: -1px;
-  margin: 0;
-  color: #000;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
 }
 
-.shop-hero-info p {
-  font-size: 1rem;
+.shop-details-box {
+  background: #fafafa;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 20px 0;
+  border: 1px solid #f0f0f0;
+}
+
+.shop-desc {
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.detail-line {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
   color: #666;
-  letter-spacing: 2px;
+}
+
+.detail-line b {
+  color: #000;
+  margin-right: 10px;
+}
+
+.location-chip {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
   margin-top: 10px;
 }
 
-.shop-actions-group {
+.shop-actions {
   display: flex;
   gap: 15px;
 }
 
-.admin-btn {
+.edit-link,
+.delete-btn {
   padding: 12px 24px;
-  border: 1px solid #000;
-  background: transparent;
   font-weight: 800;
   letter-spacing: 1px;
   cursor: pointer;
   text-transform: uppercase;
   font-size: 0.7rem;
+  text-decoration: none;
+  border-radius: 8px;
   transition: 0.3s;
 }
 
-.admin-btn.delete {
-  color: #ff3b3b;
-  border-color: #ff3b3b;
+.edit-link {
+  border: 1px solid #000;
+  color: #000;
+  background: transparent;
 }
 
-.admin-btn:hover {
+.edit-link:hover {
   background: #000;
   color: #fff;
+}
+
+.delete-btn {
+  border: 1px solid #ff3b3b;
+  color: #ff3b3b;
+  background: transparent;
+}
+
+.delete-btn:hover {
+  background: #ff3b3b;
+  color: #fff;
+}
+
+.footer-nav {
+  margin-top: 60px;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.back-link {
+  color: #888;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }

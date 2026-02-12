@@ -40,10 +40,14 @@ const ShopGrid = () => {
 
   return (
     <main className="shop-grid-container">
-      <header className="grid-header">
-        <h1>All Shops</h1>
-        <Link to="/shops/new" className="create-shop-btn">
-          ➕ Create New Shop
+      <header className="shop-grid-header">
+        <div className="header-text">
+          <h1>ALL SHOPS</h1>
+          <p>CURATED SELECTION</p>
+        </div>
+        <Link to="/shops/new" className="create-shop-box">
+          <span className="plus-icon">+</span>
+          <span className="create-text">CREATE NEW SHOP</span>
         </Link>
         <div>
           <label htmlFor="industry">Filter Industry</label>
@@ -72,13 +76,13 @@ const ShopGrid = () => {
               key={shop._id}
               className="shop-card"
             >
-              <h3>{shop.name}</h3>
+              <h2>{shop.name}</h2>
               <p>{shop.description.substring(0, 60)}...</p>
-              <span className="view-details">View Shop →</span>
+              <span className="view-shop-btn">VIEW SHOP</span>
             </Link>
           ))
         ) : (
-          <p>No shops found. Start by creating one!</p>
+          <p className="no-shops">No shops found. Start by creating one!</p>
         )}
       </div>
     </main>

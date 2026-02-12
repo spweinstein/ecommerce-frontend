@@ -1,8 +1,11 @@
-:root {
-  --brand-color: #b39ddb;
+main {
+  /* margin-top: 15vh !important; */
+  /* display: block !important; */
+  /* position: relative !important; */
+  width: 100% !important;
+  padding-top: 10vh;
 }
 
-
-button.btn {
-    
+.hero-layout {
+  text-align: center;
 }

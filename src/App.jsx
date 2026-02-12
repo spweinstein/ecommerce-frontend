@@ -16,6 +16,7 @@ import ProductGrid from "./components/Products/ProductGrid/ProductGrid.jsx";
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails.jsx";
 import ProductCreateForm from "./components/Products/ProductCreateForm/ProductCreateForm.jsx";
 import ProductEditForm from "./components/Products/ProductEditForm/ProductEditForm.jsx";
+import "./App.css";
 
 const App = () => {
   const { user } = useContext(UserContext);

@@ -1,13 +1,21 @@
 .shop-grid-container {
   max-width: 1200px;
-  margin: 100px auto;
+  margin: 120px auto;
   padding: 0 40px;
   background-color: #ffffff;
 }
 
 .shop-grid-header {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 60px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 30px;
+}
+
+.header-text {
+  text-align: left;
 }
 
 .shop-grid-header h1 {
@@ -16,6 +24,48 @@
   letter-spacing: 6px;
   text-transform: uppercase;
   color: #000;
+  margin: 0;
+}
+
+.shop-grid-header p {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: #999;
+  margin-top: 5px;
+}
+
+.create-shop-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  background: #ffffff;
+  border: 1px solid #000;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.create-shop-box:hover {
+  background: #000;
+}
+
+.plus-icon {
+  font-size: 1.2rem;
+  font-weight: 300;
+  color: #000;
+}
+
+.create-text {
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #000;
+}
+
+.create-shop-box:hover .plus-icon,
+.create-shop-box:hover .create-text {
+  color: #fff;
 }
 
 .shop-grid {
@@ -32,6 +82,7 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
   transition: all 0.4s ease;
   text-align: center;
+  text-decoration: none;
 }
 
 .shop-card:hover {
@@ -62,10 +113,18 @@
   padding: 12px 25px;
   background: #000;
   color: #fff;
-  text-decoration: none;
   font-weight: 700;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  border-radius: 10px;
+  border-radius: 6px;
+}
+
+.no-shops {
+  text-align: center;
+  grid-column: 1 / -1;
+  color: #bbb;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }
