@@ -1,12 +1,15 @@
 nav {
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   width: 100%;
   z-index: 1000;
   background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
   backdrop-filter: blur(10px); /* Blur effect */
-  padding: 1.5rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  min-height: 10vh;
+  max-height: 10vh;
 }
 
 nav ul {
