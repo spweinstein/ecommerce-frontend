@@ -2,9 +2,9 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { signIn } from "../../services/authService.js";
 import { UserContext } from "../../contexts/UserContext.jsx";
-import "./SigninForm.css";
+import "./SignInForm.css";
 
-const SigninForm = () => {
+const SignInForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
 
@@ -71,4 +71,4 @@ const SigninForm = () => {
   );
 };
 
-export default SigninForm;
+export default SignInForm;

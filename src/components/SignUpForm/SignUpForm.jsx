@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import "./SignupForm.css";
+import "./SignUpForm.css";
 
-const SignupForm = ({ handleSignup }) => {
+const SignUpForm = ({ handleSignup }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
@@ -81,4 +81,4 @@ const SignupForm = ({ handleSignup }) => {
   );
 };
 
-export default SignupForm;
+export default SignUpForm;
