@@ -24,7 +24,7 @@ const ProductCreateForm = () => {
     width: 0,
     height: 0,
     shop,
-    productCategory: "",
+    category: "",
   });
 
   useEffect(() => {
@@ -122,10 +122,10 @@ const ProductCreateForm = () => {
 
           <div className="form-row">
             <div className="input-group">
-              <label htmlFor="productCategory">Category</label>
+              <label htmlFor="category">Category</label>
               <select
-                name="productCategory"
-                id="productCategory"
+                name="category"
+                id="category"
                 required
                 onChange={handleChange}
                 value={formData.productCategory}
