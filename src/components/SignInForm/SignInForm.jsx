@@ -1,72 +1,74 @@
 import { useState, useContext } from "react";
-import { UserContext } from "../../contexts/UserContext.jsx";
 import { useNavigate } from "react-router";
 import { signIn } from "../../services/authService.js";
+import { UserContext } from "../../contexts/UserContext.jsx";
+import "./SigninForm.css";
 
-const SignInForm = () => {
-  const [message, setMessage] = useState("");
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
+const SigninForm = () => {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({ username: "", password: "" });
+
   const { setUser } = useContext(UserContext);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setMessage("");
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const signedInUser = await signIn(formData);
-      setUser(signedInUser);
-      console.log("hiii");
-      navigate("/");
-    } catch (err) {
-      setMessage(err.message);
-    }
+    const userData = await signIn(formData);
+    setUser(userData);
+    navigate("/");
   };
 
   return (
-    <main>
-      <h1>Sign In</h1>
-      <p>{message}</p>
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            autoComplete="off"
-            id="username"
-            value={formData.username}
-            name="username"
-            onChange={handleChange}
-            required
-          />
+    <main className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1>SIGN IN</h1>
+          <p>ACCESS YOUR EXCLUSIVE DASHBOARD</p>
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            autoComplete="off"
-            id="password"
-            value={formData.password}
-            name="password"
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <button type="submit">Sign In</button>
-          <button onClick={() => navigate("/")}>Cancel</button>
-        </div>
-      </form>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Enter username"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="••••••••"
+              required
+            />
+          </div>
+          <div className="auth-actions">
+            <button type="submit" className="main-btn">
+              LOG IN
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate("/")}
+              className="cancel-btn"
+            >
+              CANCEL
+            </button>
+          </div>
+        </form>
+      </div>
     </main>
   );
 };
 
-export default SignInForm;
+export default SigninForm;

@@ -1,38 +1,37 @@
 nav {
-  background-color: #ffffff;
-  padding: 1.2rem 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  display: flex;
-  justify-content: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  backdrop-filter: blur(10px); /* Blur effect */
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 40px;
   display: flex;
   align-items: center;
-  gap: 15px;
-  width: 100%;
+  gap: 45px;
   max-width: 1200px;
 }
 
 nav a {
-  display: inline-block;
-  background-color: #b39ddb;
-  color: #ffffff;
+  color: #1a1a1a;
   text-decoration: none;
-  padding: 12px 24px;
-  border-radius: 10px;
   font-weight: 700;
-  font-size: 16px;
-  transition: all 0.3s ease;
+  font-size: 15px; /* Bigger as requested */
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: 0.3s;
 }
 
 nav a:hover {
-  background-color: #9575cd;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(149, 117, 205, 0.3);
+  color: #000;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 nav li:nth-child(4) {
@@ -40,91 +39,15 @@ nav li:nth-child(4) {
 }
 
 .welcome-box {
-  background-color: #f3e5f5;
-  color: #6a1b9a;
-  padding: 12px 24px;
-  border-radius: 10px;
-  border: 2px solid #d1c4e9;
+  background: #000;
+  color: #fff;
+  padding: 8px 20px;
+  font-size: 13px;
   font-weight: 800;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  white-space: nowrap;
+  letter-spacing: 1px;
 }
 
-nav a.sign-out-btn {
-  background-color: #ffffff;
-  color: #7e57c2;
-  border: 2px solid #b39ddb;
-}
-
-nav a.sign-out-btn:hover {
-  background-color: #f3e5f5;
-  color: #4527a0;
-}
-
-/* Mobile-first adjustments */
-@media (max-width: 768px) {
-  nav {
-    padding: 1rem;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  nav li:nth-child(4) {
-    margin-left: 0;
-  }
-
-  nav a {
-    text-align: center;
-    padding: 10px 16px;
-    font-size: 14px;
-  }
-
-  .welcome-box {
-    text-align: center;
-    justify-content: center;
-    padding: 10px 16px;
-    font-size: 14px;
-  }
-}
-
-/* Tablet adjustments */
-@media (min-width: 769px) and (max-width: 1024px) {
-  nav {
-    padding: 1rem 1.5rem;
-  }
-
-  nav ul {
-    gap: 10px;
-  }
-
-  nav a {
-    padding: 10px 16px;
-    font-size: 15px;
-  }
-
-  .welcome-box {
-    padding: 10px 16px;
-    font-size: 15px;
-  }
-}
-
-/* Handle very small screens */
-@media (max-width: 480px) {
-  nav a {
-    font-size: 13px;
-    padding: 8px 12px;
-  }
-
-  .welcome-box {
-    font-size: 13px;
-    padding: 8px 12px;
-    white-space: normal;
-    text-align: center;
-  }
+.sign-out-btn {
+  color: #ff4d4d !important;
+  font-weight: 800;
 }
