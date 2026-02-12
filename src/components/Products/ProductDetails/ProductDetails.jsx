@@ -5,6 +5,7 @@ import { useParams, Link, useNavigate } from "react-router";
 const ProductDetails = ({ user }) => {
   const [product, setProduct] = useState({
     name: "",
+    category: "",
     description: "",
     price: 0,
     brand: "",
@@ -15,6 +16,7 @@ const ProductDetails = ({ user }) => {
     width: 0,
     height: 0,
     shop: {},
+    category: {},
   });
   const { productId } = useParams();
   const navigate = useNavigate();
@@ -51,6 +53,7 @@ const ProductDetails = ({ user }) => {
       <header>
         <h3>{product.name}</h3>
         <p>Shop: {product.shop.name}</p>
+        <p>Category: {product.category.name}</p>
         {isOwner && (
           <>
             <button>
@@ -62,7 +65,6 @@ const ProductDetails = ({ user }) => {
       </header>
       <main>
         <section>
-          {" "}
           <p>
             <b>Description</b>: {product.description}
           </p>
@@ -75,17 +77,6 @@ const ProductDetails = ({ user }) => {
           <p>
             <b>Brand:</b> {product.brand}
           </p>
-
-
-
-
-
-
-
-
-
-
-          
           <p>
             <b>SKU:</b> {product.sku}
           </p>

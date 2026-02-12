@@ -45,7 +45,7 @@ const ShopEditForm = () => {
       }
     };
     fetchIndustries();
-  }, []);
+  }, [shopId]);
 
   const handleChange = (evt) => {
     setFormData({ ...formData, [evt.target.name]: evt.target.value });
@@ -96,16 +96,6 @@ const ShopEditForm = () => {
             required
             onChange={handleChange}
             value={formData.industry}
-
-
-
-
-
-
-
-
-
-            
           >
             <option value="">-- Select an option --</option>
 
