@@ -8,6 +8,7 @@ import {
   clearCart,
   addToCart,
   removeFromCart,
+  clearItemFromCart,
 } from "../../services/cartService.js";
 
 const CartPage = () => {
@@ -31,38 +32,24 @@ const CartPage = () => {
   const handleAddOne = async (id) => {
     await addToCart(id);
     fetchCart();
-    // setCartItems((prevCartItems) =>
-    //   prevCartItems.map((item) =>
-    //     item.product._id === id
-    //       ? { ...item, quantity: item.quantity + 1 }
-    //       : item,
-    //   ),
-    // );
   };
 
   // This function reduces the quantity count by one but prevents it from going below one.
   const handleRemoveOne = async (id) => {
     await removeFromCart(id);
     fetchCart();
-    // setCartItems((prevCartItems) =>
-    //   cartItems.map((item) =>
-    //     item.product._id === id && item.quantity > 1
-    //       ? { ...item, quantity: item.quantity - 1 }
-    //       : item,
-    //   ),
-    // );
   };
 
   // This function completely removes a specific product from the list regardless of its quantity.
-  const handleClearItem = (id) => {
-    // setCartItems(cartItems.filter((item) => item.product._id !== id));
+  const handleClearItem = async (id) => {
+    await clearItemFromCart(id);
+    fetchCart();
   };
 
   // This function empties the entire cart by setting the list back to an empty array.
   const handleClearCart = async () => {
     await clearCart();
     fetchCart();
-    // setCartItems([]);
   };
 
   // This variable calculates the final price by multiplying each item's price by its quantity.
