@@ -1,56 +1,31 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
+
+import {
+  getCart,
+  clearCart,
+  addToCart,
+  removeFromCart,
+} from "../../services/cartService.js";
+
 const CartPage = () => {
-  // Dummy data from backend
-  const dummyCartItems = [
-    {
-      product: {
-        _id: "123",
-        name: "Product A",
-        price: 100,
-      },
-
-      quantity: 2,
-
-      shop: {
-        _id: "123",
-        name: "Shop A",
-      },
-    },
-
-    {
-      product: {
-        _id: "345",
-        name: "Product B",
-        price: 20,
-      },
-
-      quantity: 4,
-
-      shop: {
-        _id: "123",
-        name: "Shop A",
-      },
-    },
-
-    {
-      product: {
-        _id: "678",
-        name: "Product X",
-        price: 50,
-      },
-
-      quantity: 1,
-
-      shop: {
-        _id: "456",
-        name: "Shop B",
-      },
-    },
-  ];
-
-  const [cartItems, setCartItems] = useState(dummyCartItems);
+  const [cartItems, setCartItems] = useState([]);
   const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    const fetchCart = async () => {
+      try {
+        const cart = await getCart();
+        setCartItems(cart);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchCart();
+  }, [user]);
+
+  const handleRemove = (e) => {};
 
   if (!user) {
     return (
@@ -74,7 +49,7 @@ const CartPage = () => {
     );
   }
 
-  return <div>CartPage</div>;
+  return <main>Cart page</main>;
 };
 
 export default CartPage;

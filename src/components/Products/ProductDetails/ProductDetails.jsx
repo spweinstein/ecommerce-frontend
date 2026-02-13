@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import * as productService from "../../../services/productService.js";
+import { addToCart } from "../../../services/cartService.js";
 import { useParams, Link, useNavigate } from "react-router";
 import "./ProductDetails.css";
 
