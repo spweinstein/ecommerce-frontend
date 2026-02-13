@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import * as productService from "../../../services/productService.js";
+import { addToCart } from "../../../services/cartService.js";
 import { useParams, Link, useNavigate } from "react-router";
 import "./ProductDetails.css";
 
@@ -25,6 +26,11 @@ const ProductDetails = ({ user }) => {
     navigate(`/shops/${product.shop._id}`);
   };
 
+  const handleAddToCart = async () => {
+    await addToCart(productId);
+    navigate(`/cart`);
+  };
+
   if (!product)
     return (
       <main className="product-details-page">
@@ -44,14 +50,21 @@ const ProductDetails = ({ user }) => {
           </p>
           <p>Category: {product.category.name}</p>
         </div>
-        {isOwner && (
+        {user && (
           <div className="actions">
-            <Link to={`/products/${product._id}/edit`} className="btn-edit">
-              Edit Product
-            </Link>
-            <button onClick={handleDelete} className="btn-delete">
-              Delete
+            <button onClick={handleAddToCart} className="btn">
+              Add To Cart
             </button>
+            {isOwner && (
+              <>
+                <Link to={`/products/${product._id}/edit`} className="btn-edit">
+                  Edit Product
+                </Link>
+                <button onClick={handleDelete} className="btn-delete">
+                  Delete
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>
