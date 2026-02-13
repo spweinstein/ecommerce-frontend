@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext.jsx";
 import { Link } from "react-router";
+import "./CartPage.css";
 
 const CartPage = () => {
   const dummyCartItems = [
@@ -56,6 +57,7 @@ const CartPage = () => {
     setCartItems([]);
   };
 
+  // This variable calculates the final price by multiplying each item's price by its quantity.
   const total = cartItems.reduce(
     (acc, item) => acc + item.product.price * item.quantity,
     0,
@@ -73,6 +75,7 @@ const CartPage = () => {
               textDecoration: "none",
               textAlign: "center",
               display: "block",
+              marginTop: "20px",
             }}
           >
             Sign In
@@ -100,21 +103,30 @@ const CartPage = () => {
               <div key={item.product._id} className="cart-item-row">
                 <div className="item-info">
                   <span className="item-name">{item.product.name}</span>
+                  <span className="item-shop">{item.shop.name}</span>
                   <button
-                    className="remove-link"
+                    className="btn-clear-item"
                     onClick={() => clearItem(item.product._id)}
                   >
-                    Remove Product
+                    Clear Item
                   </button>
                 </div>
 
                 <div className="item-controls">
                   <div className="qty-selector">
-                    <button onClick={() => removeOne(item.product._id)}>
+                    <button
+                      className="qty-btn btn-remove"
+                      onClick={() => removeOne(item.product._id)}
+                    >
                       −
                     </button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => addOne(item.product._id)}>+</button>
+                    <button
+                      className="qty-btn btn-add"
+                      onClick={() => addOne(item.product._id)}
+                    >
+                      +
+                    </button>
                   </div>
                   <strong>${item.product.price * item.quantity}</strong>
                 </div>
@@ -129,6 +141,7 @@ const CartPage = () => {
           <span>TOTAL</span>
           <span>${total}</span>
         </div>
+
         <button className="submit-btn" disabled={cartItems.length === 0}>
           CHECKOUT
         </button>
