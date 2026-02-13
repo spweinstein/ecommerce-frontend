@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import "./SignUpForm.css";
+import "../../styles/forms.css";
 
 const SignUpForm = ({ handleSignup }) => {
   const navigate = useNavigate();
@@ -20,9 +20,9 @@ const SignUpForm = ({ handleSignup }) => {
   };
 
   return (
-    <main className="auth-container">
-      <div className="auth-card">
-        <div className="auth-header">
+    <main className="form-container">
+      <div className="form-card">
+        <div className="form-header">
           <h1>SIGN UP</h1>
           <p>CREATE YOUR EXCLUSIVE ACCOUNT</p>
         </div>
@@ -63,8 +63,8 @@ const SignUpForm = ({ handleSignup }) => {
               required
             />
           </div>
-          <div className="auth-actions">
-            <button type="submit" className="main-btn">
+          <div className="form-actions">
+            <button type="submit" className="submit-btn">
               CREATE ACCOUNT
             </button>
             <button

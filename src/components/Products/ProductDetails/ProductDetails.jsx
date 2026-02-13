@@ -36,20 +36,20 @@ const ProductDetails = ({ user }) => {
 
   return (
     <main className="product-details-page">
-      <div className="product-header-card">
+      <div className="details-header details-header--bordered">
         <div className="product-title-group">
           <h1>{product.name}</h1>
-          <p className="shop-breadcrumb">
+          <p className="breadcrumb">
             Shop: <span>{product.shop.name}</span>
           </p>
           <p>Category: {product.category.name}</p>
         </div>
         {isOwner && (
-          <div className="product-actions">
-            <Link to={`/products/${product._id}/edit`} className="edit-link">
+          <div className="actions">
+            <Link to={`/products/${product._id}/edit`} className="btn-edit">
               Edit Product
             </Link>
-            <button onClick={handleDelete} className="delete-btn">
+            <button onClick={handleDelete} className="btn-delete">
               Delete
             </button>
           </div>
@@ -105,7 +105,7 @@ const ProductDetails = ({ user }) => {
       </div>
 
       <div className="footer-nav">
-        <Link to={`/shops/${product.shop._id}`} className="back-link">
+        <Link to={`/shops/${product.shop._id}`} className="btn-back">
           ← Back to {product.shop.name}
         </Link>
       </div>

@@ -3,7 +3,7 @@ import "./Landing.css";
 const Landing = () => {
   return (
     <main className="landing-page">
-      <div className="hero-layout">
+      <div className="hero-section">
         <div className="text-header">
           <h1>WELCOME TO OUR EXCLUSIVE SHOPPING PAGE</h1>
           <p>EXPERIENCE THE NEXT GENERATION OF E-COMMERCE</p>

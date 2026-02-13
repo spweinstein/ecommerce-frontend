@@ -3,7 +3,7 @@ import * as productService from "../../../services/productService.js";
 import { getProductCategories } from "../../../services/productCategoryService.js";
 import { useNavigate, useParams, Link } from "react-router";
 import { UserContext } from "../../../contexts/UserContext.jsx";
-import "./ProductEditForm.css";
+import "../../../styles/forms.css";
 
 const ProductEditForm = () => {
   const [shop, setShop] = useState({});
@@ -83,9 +83,9 @@ const ProductEditForm = () => {
   };
 
   return (
-    <main className="product-form-container">
-      <div className="product-form-card">
-        <header className="product-form-header">
+    <main className="form-container">
+      <div className="form-card">
+        <header className="form-header">
           <p>{shop?.name}</p>
           <h1>Edit Product</h1>
         </header>
@@ -181,7 +181,7 @@ const ProductEditForm = () => {
             />
           </div>
 
-          <div className="form-row-four">
+          <div className="form-row">
             <div className="input-group">
               <label>Weight</label>
               <input

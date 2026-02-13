@@ -67,13 +67,13 @@ const ProductGrid = ({ shop, user }) => {
   };
 
   return (
-    <div className="product-grid-container">
-      <div className="product-grid-header">
+    <div className="grid-container">
+      <div className="grid-header">
         <h3>Products</h3>
 
         <div className="filter-group">
           {!shop && (
-            <div className="product-filter-box">
+            <div className="filter-box">
               <label htmlFor="industry">Industry</label>
               <select
                 id="industry"
@@ -90,7 +90,7 @@ const ProductGrid = ({ shop, user }) => {
             </div>
           )}
 
-          <div className="product-filter-box">
+          <div className="filter-box">
             <label htmlFor="category">Category</label>
             <select
               id="category"

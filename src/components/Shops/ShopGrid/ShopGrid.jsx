@@ -38,8 +38,8 @@ const ShopGrid = () => {
   };
 
   return (
-    <main className="shop-grid-container">
-      <header className="shop-grid-header">
+    <main className="grid-container">
+      <header className="grid-header">
         <div className="header-text">
           <h1>ALL SHOPS</h1>
           <p>CURATED SELECTION</p>
