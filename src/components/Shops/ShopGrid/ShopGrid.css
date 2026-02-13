@@ -1,18 +1,8 @@
-.shop-grid-container {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 40px;
-  background-color: #ffffff;
-}
+/* Shop grid specific styles */
 
-.shop-grid-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Override grid-header for shop grid */
+.grid-header {
   margin-bottom: 60px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 30px;
-  gap: 20px;
 }
 
 .header-text h1 {
@@ -29,37 +19,6 @@
   letter-spacing: 3px;
   color: #999;
   margin-top: 5px;
-}
-
-.filter-box {
-  background: #fafafa;
-  padding: 12px 20px;
-  border-radius: 12px;
-  border: 1px solid #eeeeee;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  min-width: 200px;
-}
-
-.filter-box label {
-  font-size: 0.6rem;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #222;
-}
-
-.filter-box select {
-  border: none;
-  background: transparent;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  outline: none;
-  color: #000;
 }
 
 .create-shop-box {
@@ -91,7 +50,8 @@
   gap: 40px;
 }
 
-.shop-card {
+/* Shop cards in grid have different styling than ShopCard component */
+.shop-grid .shop-card {
   background: #ffffff;
   padding: 40px;
   border-radius: 20px;
@@ -100,15 +60,16 @@
   transition: all 0.4s ease;
   text-align: center;
   text-decoration: none;
+  display: block;
 }
 
-.shop-card:hover {
+.shop-grid .shop-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
   border-color: #000;
 }
 
-.shop-card h2 {
+.shop-grid .shop-card h2 {
   font-size: 1.2rem;
   font-weight: 800;
   letter-spacing: 2px;
@@ -117,7 +78,7 @@
   color: #000;
 }
 
-.shop-card p {
+.shop-grid .shop-card p {
   font-size: 0.8rem;
   color: #888;
   line-height: 1.6;

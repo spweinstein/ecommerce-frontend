@@ -7,7 +7,7 @@ const ShopCard = ({ shop }) => {
     "https://t4.ftcdn.net/jpg/06/57/37/01/240_F_657370150_pdNeG5pjI976ZasVbKN9VqH1rfoykdYU.jpg";
 
   return (
-    <Link to={`/shops/${shop._id}`} className="shop-card">
+    <Link to={`/shops/${shop._id}`} className="card">
       <div className="shop-image-container">
         <img
           src={shop.image || placeholderImage}

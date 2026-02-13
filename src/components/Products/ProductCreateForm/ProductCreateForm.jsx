@@ -3,7 +3,7 @@ import * as productService from "../../../services/productService.js";
 import { getProductCategories } from "../../../services/productCategoryService.js";
 import { useNavigate, useLocation, Link } from "react-router";
 import { UserContext } from "../../../contexts/UserContext.jsx";
-import "./ProductCreateForm.css";
+import "../../../styles/forms.css";
 
 const ProductCreateForm = () => {
   const { user } = useContext(UserContext);
@@ -44,8 +44,8 @@ const ProductCreateForm = () => {
 
   if (!shop) {
     return (
-      <main className="product-form-container">
-        <div className="product-form-card" style={{ textAlign: "center" }}>
+      <main className="form-container">
+        <div className="form-card" style={{ textAlign: "center" }}>
           <h3>Must create a product from link on a shop's page</h3>
           <Link
             to="/"
@@ -61,8 +61,8 @@ const ProductCreateForm = () => {
 
   if (!user) {
     return (
-      <main className="product-form-container">
-        <div className="product-form-card">
+      <main className="form-container">
+        <div className="form-card">
           <p>Please sign in to access this page.</p>
           <Link
             to="/sign-in"
@@ -100,9 +100,9 @@ const ProductCreateForm = () => {
   };
 
   return (
-    <main className="product-form-container">
-      <div className="product-form-card">
-        <header className="product-form-header">
+    <main className="form-container">
+      <div className="form-card">
+        <header className="form-header">
           <p>{shop.name}</p>
           <h1>New Product</h1>
         </header>

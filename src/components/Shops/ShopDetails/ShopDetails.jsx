@@ -33,7 +33,7 @@ const ShopDetails = ({ user }) => {
 
   if (!shop)
     return (
-      <main className="shop-details-page">
+      <main className="details-page">
         <p>Loading...</p>
       </main>
     );
@@ -41,8 +41,8 @@ const ShopDetails = ({ user }) => {
   const isOwner = shop.user === user?._id || shop.user?._id === user?._id;
 
   return (
-    <main className="shop-details-page">
-      <div className="shop-header-card">
+    <main className="details-page">
+      <div className="details-header details-header--card">
         <div className="shop-info">
           <h1>{shop.name}</h1>
 
@@ -59,11 +59,11 @@ const ShopDetails = ({ user }) => {
         </div>
 
         {isOwner && (
-          <div className="shop-actions">
-            <Link to={`/shops/${shopId}/edit`} className="edit-link">
+          <div className="actions">
+            <Link to={`/shops/${shopId}/edit`} className="btn-edit">
               Edit Shop
             </Link>
-            <button onClick={handleDelete} className="delete-btn">
+            <button onClick={handleDelete} className="btn-delete">
               Delete
             </button>
           </div>
@@ -75,7 +75,7 @@ const ShopDetails = ({ user }) => {
       </div>
 
       <div className="footer-nav">
-        <Link to="/shops" className="back-link">
+        <Link to="/shops" className="btn-back">
           ← Back to all shops
         </Link>
       </div>

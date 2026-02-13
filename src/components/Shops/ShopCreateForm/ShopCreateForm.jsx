@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router";
 import * as shopService from "../../../services/shopService.js";
 import { getIndustries } from "../../../services/industryService.js";
 import { UserContext } from "../../../contexts/UserContext.jsx";
-import "./ShopCreateForm.css";
+import "../../../styles/forms.css";
 
 const ShopCreateForm = () => {
   const navigate = useNavigate();
@@ -33,8 +33,8 @@ const ShopCreateForm = () => {
 
   if (!user) {
     return (
-      <main className="shop-form-container">
-        <div className="shop-form-card">
+      <main className="form-container">
+        <div className="form-card">
           <p>Please sign in to access this page.</p>
           <Link
             to="/sign-in"
@@ -79,9 +79,9 @@ const ShopCreateForm = () => {
   };
 
   return (
-    <main className="shop-form-container">
-      <div className="shop-form-card">
-        <header className="shop-form-header">
+    <main className="form-container">
+      <div className="form-card">
+        <header className="form-header">
           <h1>Create Shop</h1>
           <p>Establish your digital boutique</p>
         </header>

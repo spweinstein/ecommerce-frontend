@@ -1,0 +1,310 @@
+/* src/styles/utils.css - Shared utility styles */
+
+/* ============================================
+   DETAIL PAGE LAYOUT
+   ============================================ */
+
+.details-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 20px;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.details-header--bordered {
+  border-bottom: 2px solid #000;
+}
+
+.details-header--card {
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  padding: 1rem;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+  padding-bottom: 1rem;
+}
+
+.details-header h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  color: #000;
+  margin: 0;
+}
+
+.breadcrumb {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #999;
+  margin-top: 10px;
+}
+
+.breadcrumb span {
+  color: #000;
+  font-weight: 700;
+}
+
+/* ============================================
+   ACTIONS
+   ============================================ */
+
+.actions {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 12px 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+  background: transparent;
+}
+
+.btn-edit {
+  border: 1px solid #000;
+  color: #000;
+}
+
+.btn-edit:hover {
+  background: #000;
+  color: #fff;
+}
+
+.btn-delete {
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+}
+
+.btn-delete:hover {
+  background: #ff4d4d;
+  color: #fff;
+}
+
+/* ============================================
+   INFO BOXES
+   ============================================ */
+
+.info-box {
+  background: #fafafa;
+  border-radius: 15px;
+  padding: 25px;
+  margin: 20px 0;
+  border: 1px solid #f0f0f0;
+}
+
+.info-box p {
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  margin: 5px 0;
+  color: #666;
+}
+
+/* ============================================
+   FOOTER NAV
+   ============================================ */
+
+.footer-nav {
+  margin-top: 60px;
+  border-top: 1px solid #eee;
+  padding-top: 30px;
+}
+
+.btn-back {
+  color: #888;
+  text-decoration: none;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  transition: 0.3s;
+}
+
+.btn-back:hover {
+  color: #000;
+}
+
+/* ============================================
+   CARDS (for grids)
+   ============================================ */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   FILTER BOX
+   ============================================ */
+
+.filter-box {
+  background: #fafafa;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.filter-box label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.filter-box select {
+  border: none;
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  color: #000;
+}
+
+/* ============================================
+   SEARCH BOX
+   ============================================ */
+
+.search-box {
+  background: #fafafa;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.search-box label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: text;
+  outline: none;
+  color: #000;
+  padding: 4px 0;
+}
+
+.search-box input::placeholder {
+  color: #999;
+  font-weight: 500;
+}
+
+/* ============================================
+   GRID CONTAINERS
+   ============================================ */
+
+.grid-container {
+  max-width: 1200px;
+  margin: 1rem auto;
+}
+
+.grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  gap: 20px;
+}
+
+.grid-header h1,
+.grid-header h3 {
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .grid-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .grid-header h1,
+  .grid-header h3 {
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+
+  .filter-box,
+  .search-box {
+    width: 100%;
+  }
+
+  .filter-group {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    padding: 0 20px;
+    margin: 20px auto;
+  }
+
+  .grid-header {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .grid-header h1,
+  .grid-header h3 {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+}

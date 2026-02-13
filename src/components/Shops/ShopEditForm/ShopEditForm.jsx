@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router";
 import * as shopService from "../../../services/shopService.js";
 import { getIndustries } from "../../../services/industryService.js";
-
-import "./ShopEditForm.css";
+import "../../../styles/forms.css";
 
 const ShopEditForm = () => {
   const navigate = useNavigate();
@@ -70,9 +69,9 @@ const ShopEditForm = () => {
   };
 
   return (
-    <main className="shop-form-container">
-      <div className="shop-form-card">
-        <header className="shop-form-header">
+    <main className="form-container">
+      <div className="form-card">
+        <header className="form-header">
           <h1>Edit Shop</h1>
           <p>Modify your boutique settings</p>
         </header>

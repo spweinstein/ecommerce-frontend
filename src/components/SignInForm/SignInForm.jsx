@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
 import { signIn } from "../../services/authService.js";
 import { UserContext } from "../../contexts/UserContext.jsx";
-import "./SignInForm.css";
+import "../../styles/forms.css";
 
 const SignInForm = () => {
   const navigate = useNavigate();
@@ -22,9 +22,9 @@ const SignInForm = () => {
   };
 
   return (
-    <main className="auth-container">
-      <div className="auth-card">
-        <div className="auth-header">
+    <main className="form-container">
+      <div className="form-card">
+        <div className="form-header">
           <h1>SIGN IN</h1>
           <p>ACCESS YOUR EXCLUSIVE DASHBOARD</p>
         </div>
@@ -53,8 +53,8 @@ const SignInForm = () => {
               required
             />
           </div>
-          <div className="auth-actions">
-            <button type="submit" className="main-btn">
+          <div className="form-actions">
+            <button type="submit" className="submit-btn">
               LOG IN
             </button>
             <button

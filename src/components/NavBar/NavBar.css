@@ -1,5 +1,4 @@
 nav {
-  /* position: fixed; */
   top: 0;
   left: 0;
   width: 100%;
@@ -8,9 +7,12 @@ nav {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
-  height: 10vh;
+  max-height: 10vh;
+  min-height: 10vh;
   display: flex;
   align-items: center;
+  position: fixed;
+  padding-bottom: 1vh;
 }
 
 nav ul {
@@ -55,4 +57,75 @@ nav li:nth-child(4) {
 .sign-out-btn {
   color: #ff4d4d !important;
   font-weight: 800;
+}
+
+/* ============================================
+   RESPONSIVE NAVBAR
+   ============================================ */
+
+@media (max-width: 992px) {
+  nav ul {
+    gap: 30px;
+    padding: 0 30px;
+  }
+
+  nav a {
+    font-size: 13px;
+    letter-spacing: 1.5px;
+  }
+
+  .welcome-box {
+    font-size: 11px;
+    padding: 6px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    height: auto;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0 20px;
+    justify-content: center;
+  }
+
+  nav a {
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  nav li:nth-child(4) {
+    margin-left: 0;
+  }
+
+  .welcome-box {
+    order: -1;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .sign-out-btn {
+    order: 999;
+  }
+}
+
+@media (max-width: 480px) {
+  nav ul {
+    gap: 10px;
+    padding: 0 15px;
+  }
+
+  nav a {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+
+  .welcome-box {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
 }
