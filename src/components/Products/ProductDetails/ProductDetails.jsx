@@ -50,21 +50,14 @@ const ProductDetails = ({ user }) => {
           </p>
           <p>Category: {product.category.name}</p>
         </div>
-        {user && (
+        {user && isOwner && (
           <div className="actions">
-            <button onClick={handleAddToCart} className="btn">
-              Add To Cart
+            <Link to={`/products/${product._id}/edit`} className="btn-edit">
+              Edit Product
+            </Link>
+            <button onClick={handleDelete} className="btn-delete">
+              Delete
             </button>
-            {isOwner && (
-              <>
-                <Link to={`/products/${product._id}/edit`} className="btn-edit">
-                  Edit Product
-                </Link>
-                <button onClick={handleDelete} className="btn-delete">
-                  Delete
-                </button>
-              </>
-            )}
           </div>
         )}
       </div>
@@ -103,7 +96,15 @@ const ProductDetails = ({ user }) => {
                 {product.height}"
               </p>
             )}
+            <p>Standart Or Express Shipping On Each Item</p>
           </div>
+
+          {/* One comment: Primary Add to Cart button styled with the new boxed CSS */}
+          {user && (
+            <button className="add-to-cart-boxed" onClick={handleAddToCart}>
+              Add to Cart — ${product.price}
+            </button>
+          )}
         </section>
 
         <section className="image-box">
