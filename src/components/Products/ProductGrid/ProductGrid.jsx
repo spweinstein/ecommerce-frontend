@@ -14,12 +14,15 @@ const ProductGrid = ({ shop, user }) => {
   );
   const [productCategories, setProductCategories] = useState([]);
   const [selectedProductCategory, setSelectedProductCategory] = useState("");
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const fetchedProducts = await productService.getProducts(
           shop?._id,
+          search,
+          selectedIndustry,
           selectedProductCategory,
         );
         setProducts(fetchedProducts || []);
@@ -28,7 +31,7 @@ const ProductGrid = ({ shop, user }) => {
       }
     };
     fetchProducts();
-  }, [shop, selectedProductCategory]);
+  }, [shop, search, selectedIndustry, selectedProductCategory]);
 
   useEffect(() => {
     const fetchIndustries = async () => {
@@ -66,11 +69,26 @@ const ProductGrid = ({ shop, user }) => {
     setSelectedProductCategory(e.target.value);
   };
 
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <div className="grid-container">
       <div className="grid-header">
         <h3>Products</h3>
 
+        <div className="search-box">
+          <label htmlFor="search">Search</label>
+          <input
+            type="text"
+            name="search"
+            id="search"
+            placeholder="Search"
+            value={search}
+            onChange={handleSearchChange}
+          />
+        </div>
         <div className="filter-group">
           {!shop && (
             <div className="filter-box">
@@ -90,21 +108,23 @@ const ProductGrid = ({ shop, user }) => {
             </div>
           )}
 
-          <div className="filter-box">
-            <label htmlFor="category">Category</label>
-            <select
-              id="category"
-              onChange={handleProductCategoryChange}
-              value={selectedProductCategory}
-            >
-              <option value="">ALL CATEGORIES</option>
-              {productCategories.map((cat) => (
-                <option key={cat._id} value={cat._id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
-          </div>
+          {selectedIndustry && (
+            <div className="filter-box">
+              <label htmlFor="category">Category</label>
+              <select
+                id="category"
+                onChange={handleProductCategoryChange}
+                value={selectedProductCategory}
+              >
+                <option value="">ALL CATEGORIES</option>
+                {productCategories.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
         </div>
 
         {shop &&

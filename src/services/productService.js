@@ -1,9 +1,14 @@
 import api from "./apiConfig.js";
 
-export const getProducts = async (shopId = null, productCategoryId = null) => {
+export const getProducts = async (
+  shopId = null,
+  search = null,
+  industryId = null,
+  productCategoryId = null,
+) => {
   try {
     const { data } = await api.get("/products", {
-      params: { shopId, productCategoryId },
+      params: { shopId, search, industryId, productCategoryId },
     });
     if (data.err) throw new Error(data.err);
     return data;

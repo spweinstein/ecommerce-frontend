@@ -7,15 +7,15 @@
 .details-page {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 1rem 20px;
 }
 
 .details-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 50px;
-  padding-bottom: 30px;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 .details-header--bordered {
@@ -25,10 +25,10 @@
 .details-header--card {
   background: #ffffff;
   border: 1px solid #eeeeee;
-  padding: 50px;
+  padding: 1rem;
   border-radius: 30px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
-  padding-bottom: 50px; /* override */
+  padding-bottom: 1rem;
 }
 
 .details-header h1 {
@@ -197,12 +197,51 @@
 }
 
 /* ============================================
+   SEARCH BOX
+   ============================================ */
+
+.search-box {
+  background: #fafafa;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid #eeeeee;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.search-box label {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #222;
+}
+
+.search-box input {
+  border: none;
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: text;
+  outline: none;
+  color: #000;
+  padding: 4px 0;
+}
+
+.search-box input::placeholder {
+  color: #999;
+  font-weight: 500;
+}
+
+/* ============================================
    GRID CONTAINERS
    ============================================ */
 
 .grid-container {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 1rem auto;
   padding: 0 40px;
 }
 
@@ -210,9 +249,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 1rem;
   border-bottom: 1px solid #eee;
-  padding-bottom: 30px;
+  padding-bottom: 1rem;
   gap: 20px;
 }
 
@@ -223,4 +262,50 @@
   letter-spacing: 4px;
   text-transform: uppercase;
   margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+  .grid-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .grid-header h1,
+  .grid-header h3 {
+    font-size: 1rem;
+    letter-spacing: 3px;
+  }
+
+  .filter-box,
+  .search-box {
+    width: 100%;
+  }
+
+  .filter-group {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    padding: 0 20px;
+    margin: 20px auto;
+  }
+
+  .grid-header {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+
+  .grid-header h1,
+  .grid-header h3 {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
 }
