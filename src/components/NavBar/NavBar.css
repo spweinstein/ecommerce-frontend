@@ -7,9 +7,12 @@ nav {
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
-  height: 10vh;
+  max-height: 10vh;
+  min-height: 10vh;
   display: flex;
   align-items: center;
+  position: fixed;
+  padding-bottom: 1vh;
 }
 
 nav ul {
@@ -80,8 +83,6 @@ nav li:nth-child(4) {
 @media (max-width: 768px) {
   nav {
     height: auto;
-    min-height: 10vh;
-    padding: 15px 0;
   }
 
   nav ul {

@@ -8,8 +8,6 @@
 
 body,
 html {
-  width: 100%;
-  height: 100%;
   background-color: #ffffff;
   color: #000000;
   overflow-x: hidden;
@@ -18,4 +16,10 @@ html {
 
 #root {
   width: 100%;
+  padding-top: 10vh;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+:root {
+  box-sizing: border-box;
 }

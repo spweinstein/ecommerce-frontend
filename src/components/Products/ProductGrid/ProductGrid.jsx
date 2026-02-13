@@ -74,8 +74,8 @@ const ProductGrid = ({ shop, user }) => {
   };
 
   return (
-    <div className="grid-container">
-      <div className="grid-header">
+    <main className="grid-container">
+      <header className="grid-header">
         <h3>Products</h3>
 
         <div className="search-box">
@@ -138,7 +138,7 @@ const ProductGrid = ({ shop, user }) => {
               + NEW PRODUCT
             </Link>
           )}
-      </div>
+      </header>
 
       {products.length > 0 ? (
         <div className="product-grid">
@@ -149,7 +149,7 @@ const ProductGrid = ({ shop, user }) => {
       ) : (
         <div className="no-products">No products yet</div>
       )}
-    </div>
+    </main>
   );
 };
 
