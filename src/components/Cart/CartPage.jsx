@@ -10,47 +10,70 @@ import {
 } from "../../services/cartService.js";
 
 const CartPage = () => {
-  const [cart, setCart] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const { user } = useContext(UserContext);
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      try {
-        const cart = await getCart();
-        setCart(cart);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const fetchCart = async () => {
+    try {
+      const cart = await getCart();
+      setCartItems(cart.items);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
     fetchCart();
   }, [user]);
 
-  const handleRemove = (e) => {};
-
-  // This function calculates the total price by multiplying each product's price by its quantity.
-  const total = 0;
-  //   const total = cartItems.reduce(
-  //     (acc, item) => acc + item.product.price * item.quantity,
-  //     0,
-  //   );
-
-  // This function alerts the user and empties the cart to simulate a successful payment.
-  const handlePay = () => {
-    alert("Thank you for your order! ✨");
-    setCartItems([]);
+  // This function finds the item by ID and increases its quantity count by one.
+  const handleAddOne = async (id) => {
+    await addToCart(id);
+    fetchCart();
+    // setCartItems((prevCartItems) =>
+    //   prevCartItems.map((item) =>
+    //     item.product._id === id
+    //       ? { ...item, quantity: item.quantity + 1 }
+    //       : item,
+    //   ),
+    // );
   };
 
-  // This function removes a specific product from the list by checking against its unique ID.
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.product._id !== id));
+  // This function reduces the quantity count by one but prevents it from going below one.
+  const handleRemoveOne = async (id) => {
+    await removeFromCart(id);
+    fetchCart();
+    // setCartItems((prevCartItems) =>
+    //   cartItems.map((item) =>
+    //     item.product._id === id && item.quantity > 1
+    //       ? { ...item, quantity: item.quantity - 1 }
+    //       : item,
+    //   ),
+    // );
   };
+
+  // This function completely removes a specific product from the list regardless of its quantity.
+  const handleClearItem = (id) => {
+    // setCartItems(cartItems.filter((item) => item.product._id !== id));
+  };
+
+  // This function empties the entire cart by setting the list back to an empty array.
+  const handleClearCart = async () => {
+    await clearCart();
+    fetchCart();
+    // setCartItems([]);
+  };
+
+  const total = cartItems.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0,
+  );
 
   if (!user) {
     return (
       <main className="cart-container">
         <div className="cart-card">
-          <p>Please sign in to access this page.</p>
+          <p>Please sign in to access your cart.</p>
           <Link
             to="/sign-in"
             className="submit-btn"
@@ -58,7 +81,6 @@ const CartPage = () => {
               textDecoration: "none",
               textAlign: "center",
               display: "block",
-              marginTop: "20px",
             }}
           >
             Sign In
@@ -73,49 +95,54 @@ const CartPage = () => {
       <div className="cart-card">
         <header className="cart-header">
           <h1>Shopping Cart</h1>
-          <p>{cart?.items?.length} items currently in your bag</p>
+
+          {cartItems.length > 0 && (
+            <button className="clear-all-btn" onClick={handleClearCart}>
+              Clear Entire Cart
+            </button>
+          )}
         </header>
 
         <div className="cart-list">
-          {cart?.items?.length > 0 ? (
-            cart?.items?.map((item, idx) => (
-              <div key={idx} className="cart-item-row">
+          {cartItems.length > 0 ? (
+            cartItems.map((item) => (
+              <div key={item.product._id} className="cart-item-row">
                 <div className="item-info">
                   <span className="item-name">{item.product.name}</span>
-                  {/* <span className="item-shop">{item.product.shop.name}</span> */}
                   <button
-                    className="remove-btn"
-                    onClick={() => removeItem(item.product._id)}
+                    className="remove-link"
+                    onClick={() => handleClearItem(item.product._id)}
                   >
-                    Remove
+                    Remove Product
                   </button>
                 </div>
-                <div className="item-pricing">
-                  <span>
-                    {item.quantity} x ${item.product.price}
-                  </span>
+
+                <div className="item-controls">
+                  <div className="qty-selector">
+                    <button onClick={() => handleRemoveOne(item.product._id)}>
+                      −
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => handleAddOne(item.product._id)}>
+                      +
+                    </button>
+                  </div>
                   <strong>${item.product.price * item.quantity}</strong>
                 </div>
               </div>
             ))
           ) : (
-            <div className="empty-msg">YOUR CART IS EMPTY</div>
+            <div className="empty-msg">YOUR BAG IS EMPTY</div>
           )}
         </div>
 
-        <div className="cart-footer">
-          <div className="total-section">
-            <span>TOTAL</span>
-            <span>${total}</span>
-          </div>
-          <button
-            className="submit-btn"
-            onClick={handlePay}
-            disabled={cart?.items?.length === 0}
-          >
-            PAY NOW
-          </button>
+        <div className="cart-total-section">
+          <span>TOTAL</span>
+          <span>${total}</span>
         </div>
+        <button className="submit-btn" disabled={cartItems.length === 0}>
+          CHECKOUT
+        </button>
       </div>
     </main>
   );
