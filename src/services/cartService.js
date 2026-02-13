@@ -39,3 +39,13 @@ export const removeFromCart = async (productId) => {
     console.log(error);
   }
 };
+
+export const clearItemFromCart = async (productId) => {
+  try {
+    const { data } = await api.delete(`/cart/${productId}/clear`);
+    if (data.err) throw new Error(data.err);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
