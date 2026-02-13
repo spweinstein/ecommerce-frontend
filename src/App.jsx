@@ -16,6 +16,8 @@ import ProductGrid from "./components/Products/ProductGrid/ProductGrid.jsx";
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails.jsx";
 import ProductCreateForm from "./components/Products/ProductCreateForm/ProductCreateForm.jsx";
 import ProductEditForm from "./components/Products/ProductEditForm/ProductEditForm.jsx";
+import CartPage from "./components/Cart/CartPage.jsx";
+
 import "./App.css";
 
 const App = () => {
@@ -41,6 +43,7 @@ const App = () => {
         />
         <Route path="/products/new" element={<ProductCreateForm />} />
         <Route path="/products/:productId/edit" element={<ProductEditForm />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </>
   );
