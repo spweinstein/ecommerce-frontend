@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { Link } from "react-router"; // Added for navigation
+import "./CartPage.css";
 
 import {
   getCart,
@@ -64,10 +65,10 @@ const CartPage = () => {
     // setCartItems([]);
   };
 
-  const total = cartItems.reduce(
-    (acc, item) => acc + item.product.price * item.quantity,
-    0,
-  );
+  // This variable calculates the final price by multiplying each item's price by its quantity.
+  const total = cartItems
+    .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+    .toFixed(2);
 
   if (!user) {
     return (
@@ -81,6 +82,7 @@ const CartPage = () => {
               textDecoration: "none",
               textAlign: "center",
               display: "block",
+              marginTop: "20px",
             }}
           >
             Sign In
@@ -109,25 +111,34 @@ const CartPage = () => {
               <div key={item.product._id} className="cart-item-row">
                 <div className="item-info">
                   <span className="item-name">{item.product.name}</span>
+                  {/* <span className="item-shop">{item.shop.name}</span> */}
                   <button
-                    className="remove-link"
+                    className="btn-clear-item"
                     onClick={() => handleClearItem(item.product._id)}
                   >
-                    Remove Product
+                    Clear Item
                   </button>
                 </div>
 
                 <div className="item-controls">
                   <div className="qty-selector">
-                    <button onClick={() => handleRemoveOne(item.product._id)}>
+                    <button
+                      className="qty-btn btn-remove"
+                      onClick={() => handleRemoveOne(item.product._id)}
+                    >
                       −
                     </button>
                     <span>{item.quantity}</span>
-                    <button onClick={() => handleAddOne(item.product._id)}>
+                    <button
+                      className="qty-btn btn-add"
+                      onClick={() => handleAddOne(item.product._id)}
+                    >
                       +
                     </button>
                   </div>
-                  <strong>${item.product.price * item.quantity}</strong>
+                  <strong>
+                    ${(item.product.price * item.quantity).toFixed(2)}
+                  </strong>
                 </div>
               </div>
             ))
@@ -140,6 +151,7 @@ const CartPage = () => {
           <span>TOTAL</span>
           <span>${total}</span>
         </div>
+
         <button className="submit-btn" disabled={cartItems.length === 0}>
           CHECKOUT
         </button>

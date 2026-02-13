@@ -29,6 +29,9 @@ const NavBar = () => {
               <span>🛍️ Welcome, {user.username}</span>
             </li>
             <li>
+              <Link to="/cart">Cart</Link>
+            </li>
+            <li>
               <Link to="/" onClick={handleSignOut} className="sign-out-btn">
                 Sign Out
               </Link>
