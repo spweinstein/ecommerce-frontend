@@ -46,9 +46,8 @@ const ProductDetails = ({ user }) => {
         <div className="product-title-group">
           <h1>{product.name}</h1>
           <p className="breadcrumb">
-            Shop: <span>{product.shop.name}</span>
+            {product.shop.name} • <span>{product.category.name}</span>{" "}
           </p>
-          <p>Category: {product.category.name}</p>
         </div>
         {user && isOwner && (
           <div className="actions">

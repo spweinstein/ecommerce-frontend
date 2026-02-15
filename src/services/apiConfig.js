@@ -27,4 +27,25 @@ api.interceptors.request.use(
   },
 );
 
+// Add response interceptor to handle errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      switch (error.response.status) {
+        case 403:
+          // Forbidden - user doesn't have permission
+          window.location.href = "/unauthorized";
+          break;
+        case 401:
+          // Unauthorized - token invalid/expired
+          localStorage.removeItem("token");
+          window.location.href = "/sign-in";
+          break;
+      }
+    }
+    return Promise.reject(error);
+  },
+);
+
 export default api;

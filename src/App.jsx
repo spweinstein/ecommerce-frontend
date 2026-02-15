@@ -10,14 +10,15 @@ import ShopCreateForm from "./components/Shops/ShopCreateForm/ShopCreateForm.jsx
 import ShopDetails from "./components/Shops/ShopDetails/ShopDetails.jsx";
 import ShopEditForm from "./components/Shops/ShopEditForm/ShopEditForm.jsx";
 import ShopGrid from "./components/Shops/ShopGrid/ShopGrid.jsx";
-
 import ProductGrid from "./components/Products/ProductGrid/ProductGrid.jsx";
-
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails.jsx";
 import ProductCreateForm from "./components/Products/ProductCreateForm/ProductCreateForm.jsx";
 import ProductEditForm from "./components/Products/ProductEditForm/ProductEditForm.jsx";
 import CartPage from "./components/Cart/CartPage.jsx";
-
+import OrderTable from "./components/Orders/OrderTable.jsx";
+import Unauthorized from "./components/Unauthorized/Unauthorized.jsx";
+import UserOrderDetails from "./components/Orders/UserOrderDetails/UserOrderDetails.jsx";
+import ShopOrderDetails from "./components/Orders/ShopOrderDetails/ShopOrderDetails.jsx";
 import "./App.css";
 
 const App = () => {
@@ -34,6 +35,8 @@ const App = () => {
         <Route path="/shops" element={<ShopGrid />} />
         <Route path="/shops/new" element={<ShopCreateForm />} />
         <Route path="/shops/:shopId" element={<ShopDetails user={user} />} />
+        <Route path="/shops/:shopId/orders" element={<OrderTable />} />
+
         <Route path="/shops/:shopId/edit" element={<ShopEditForm />} />
 
         <Route path="/products" element={<ProductGrid />} />
@@ -44,6 +47,13 @@ const App = () => {
         <Route path="/products/new" element={<ProductCreateForm />} />
         <Route path="/products/:productId/edit" element={<ProductEditForm />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/orders" element={<OrderTable />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route path="/orders/:orderId" element={<UserOrderDetails />} />
+        <Route
+          path="/shops/:shopId/orders/:orderId"
+          element={<ShopOrderDetails />}
+        />
       </Routes>
     </>
   );

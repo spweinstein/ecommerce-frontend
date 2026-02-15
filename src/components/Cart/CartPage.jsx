@@ -11,6 +11,8 @@ import {
   clearItemFromCart,
 } from "../../services/cartService.js";
 
+import { submitOrder } from "../../services/orderService.js";
+
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const { user } = useContext(UserContext);
@@ -56,6 +58,17 @@ const CartPage = () => {
   const total = cartItems
     .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
     .toFixed(2);
+
+  const handleOrder = async () => {
+    await submitOrder(
+      cartItems.map((item) => ({
+        product: item.product._id,
+        quantity: item.quantity,
+        // Don't pass unitPrice or price; safer to do on backend
+      })),
+    );
+    fetchCart();
+  };
 
   if (!user) {
     return (
@@ -139,7 +152,11 @@ const CartPage = () => {
           <span>${total}</span>
         </div>
 
-        <button className="submit-btn" disabled={cartItems.length === 0}>
+        <button
+          className="submit-btn"
+          disabled={cartItems.length === 0}
+          onClick={handleOrder}
+        >
           CHECKOUT
         </button>
       </div>
