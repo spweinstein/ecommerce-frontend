@@ -1,0 +1,129 @@
+/* Shop Order Details - Compact Modern Version */
+
+/* Status Chip in Header */
+.status-chip {
+  display: flex;
+  align-items: center;
+}
+
+.status-chip span {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Status Colors - Minimal */
+.status-pending {
+  background: #fff9e6;
+  color: #997404;
+}
+
+.status-processing {
+  background: #e6f7ff;
+  color: #0c5460;
+}
+
+.status-shipped,
+.status-delivered {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-cancelled {
+  background: #ffebee;
+  color: #c62828;
+}
+
+/* Order Items Section */
+.order-items-section {
+  margin: 30px 0;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+}
+
+/* Compact Table */
+.shop-order-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shop-order-table thead th {
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #999;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.shop-order-table tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.shop-order-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.shop-order-table tbody td {
+  padding: 12px;
+  font-size: 0.85rem;
+}
+
+.shop-order-table th:last-child,
+.shop-order-table td:last-child {
+  text-align: right;
+}
+
+.item-name {
+  font-weight: 600;
+}
+
+.item-total {
+  font-weight: 700;
+}
+
+/* Total Box - Minimal */
+.order-total-box {
+  margin: 30px 0;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 12px;
+  border: 2px solid #000;
+}
+
+.total-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-label {
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.total-price {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+  font-family: "Courier New", monospace;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .shop-order-table {
+    font-size: 0.75rem;
+  }
+
+  .total-price {
+    font-size: 1.4rem;
+  }
+}

@@ -60,6 +60,9 @@ const ShopDetails = ({ user }) => {
 
         {isOwner && (
           <div className="actions">
+            <Link to={`/shops/${shopId}/orders`} className="btn-edit">
+              View Orders
+            </Link>
             <Link to={`/shops/${shopId}/edit`} className="btn-edit">
               Edit Shop
             </Link>
