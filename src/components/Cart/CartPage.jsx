@@ -61,14 +61,6 @@ const CartPage = () => {
     .toFixed(2);
 
   const handleCheckout = async () => {
-    // await submitOrder(
-    //   cartItems.map((item) => ({
-    //     product: item.product._id,
-    //     quantity: item.quantity,
-    //     // Don't pass unitPrice or price; safer to do on backend
-    //   })),
-    // );
-    // fetchCart();
     navigate("/checkout");
   };
 
