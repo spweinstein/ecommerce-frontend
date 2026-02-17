@@ -25,6 +25,18 @@ const SignUpForm = () => {
     navigate("/");
   };
 
+  const validateSubmission = () => {
+    let valid = true;
+    if (!formData.username) return false;
+    if (
+      !formData.password ||
+      !formData.passwordConf ||
+      formData.password != formData.passwordConf
+    )
+      return false;
+    return true;
+  };
+
   return (
     <main className="form-container">
       <div className="form-card">
@@ -70,7 +82,11 @@ const SignUpForm = () => {
             />
           </div>
           <div className="form-actions">
-            <button type="submit" className="submit-btn">
+            <button
+              type="submit"
+              className="submit-btn"
+              disabled={!validateSubmission()}
+            >
               CREATE ACCOUNT
             </button>
             <button
