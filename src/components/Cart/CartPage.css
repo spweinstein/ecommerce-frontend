@@ -29,17 +29,60 @@
   text-transform: uppercase;
 }
 
-/* Row spacing */
+/* Row spacing and alignment */
 .cart-item-row {
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 0; /* More spacing between items */
+  align-items: center; /* Keeps everything centered horizontally */
+  padding: 2rem 0; /* Extra spacing between rows */
   border-bottom: 1px solid #f0f0f0;
 }
 
-/* Button Base Style (similar to .btn-edit from utils.css) */
+/* Vertical stack for Product Name and Clear Button */
+.item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Tiny bit of space between name and button */
+}
+
+.item-name {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Small boxed button under the item */
+.btn-clear-item-small {
+  padding: 4px 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.55rem; /* Noticeably smaller */
+  border-radius: 6px;
+  transition: 0.3s;
+  background: transparent;
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  width: fit-content; /* Boxes it out to only fit the text */
+}
+
+.btn-clear-item-small:hover {
+  background: #ff4d4d;
+  color: #fff;
+}
+
+/* Right side controls */
+.item-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+/* Button Base Style */
 .qty-btn,
-.btn-clear-item,
 .clear-all-btn {
   padding: 8px 16px;
   font-weight: 800;
@@ -63,14 +106,12 @@
   color: #fff;
 }
 
-/* Red for removing (-) and Clear Item */
-.btn-remove,
-.btn-clear-item {
+/* Red for removing (-) */
+.btn-remove {
   border-color: #ff4d4d;
   color: #ff4d4d;
 }
-.btn-remove:hover,
-.btn-clear-item:hover {
+.btn-remove:hover {
   background: #ff4d4d;
   color: #fff;
 }
@@ -79,7 +120,7 @@
 .qty-selector {
   display: flex;
   align-items: center;
-  gap: 15px; /* Tiny bit more spacing */
+  gap: 15px;
 }
 
 .qty-selector span {
@@ -98,7 +139,7 @@
   letter-spacing: 1px;
 }
 
-/* Final Checkout Button (Black style like btn-edit:hover) */
+/* Final Checkout Button */
 .submit-btn {
   width: 100%;
   background: #000;
@@ -110,4 +151,12 @@
   letter-spacing: 3px;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+.empty-msg {
+  text-align: center;
+  padding: 50px 0;
+  font-weight: 800;
+  color: #ccc;
+  letter-spacing: 2px;
 }
