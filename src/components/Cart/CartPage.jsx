@@ -96,11 +96,16 @@ const CartPage = () => {
           {cartItems.length > 0 ? (
             cartItems.map((item) => (
               <div key={item.product._id} className="cart-item-row">
+                {/* Updated: This section now stacks the button directly under the name */}
                 <div className="item-info">
-                  <span className="item-name">{item.product.name}</span>
-                  {/* <span className="item-shop">{item.shop.name}</span> */}
+                  <div className="product-text-stack">
+                    <span className="item-name">{item.product.name}</span>
+                    {/* <span className="item-shop">{item.shop.name}</span> */}
+                  </div>
+
+                  {/* One comment: This button is now a smaller box positioned underneath the product name */}
                   <button
-                    className="btn-clear-item"
+                    className="btn-clear-item-small"
                     onClick={() => handleClearItem(item.product._id)}
                   >
                     Clear Item
