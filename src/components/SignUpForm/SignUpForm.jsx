@@ -1,22 +1,28 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router";
+import { signUp } from "../../services/authService.js";
+import { UserContext } from "../../contexts/UserContext.jsx";
 import "../../styles/forms.css";
 
-const SignUpForm = ({ handleSignup }) => {
+const SignUpForm = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     passwordConf: "",
   });
+  const { user, setUser } = useContext(UserContext);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleSignup(formData);
+    const userData = await signUp(formData);
+    setUser(userData);
+    navigate("/");
   };
 
   return (

@@ -8,37 +8,16 @@ const Dashboard = () => {
 
   return (
     <main className="landing-page">
-      <div className="hero-layout">
+      <div className="hero-section">
         <div className="text-header">
           <h1>WELCOME, {user.username?.toUpperCase()}</h1>
           <p>SECURE SESSION ACTIVE</p>
 
-          <div
-            className="dashboard-actions"
-            style={{
-              marginTop: "30px",
-              display: "flex",
-              gap: "20px",
-              justifyContent: "center",
-            }}
-          >
-            <Link
-              to="/shops"
-              className="view-shop-btn"
-              style={{ padding: "15px 30px" }}
-            >
+          <div className="dashboard-actions">
+            <Link to="/shops" className="view-shop-btn">
               BROWSE SHOPS
             </Link>
-            <Link
-              to="/shops/new"
-              className="view-shop-btn"
-              style={{
-                padding: "15px 30px",
-                background: "transparent",
-                color: "#000",
-                border: "1px solid #000",
-              }}
-            >
+            <Link to="/shops/new" className="view-shop-btn outline">
               CREATE SHOP
             </Link>
           </div>

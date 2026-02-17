@@ -46,9 +46,8 @@ const ProductDetails = ({ user }) => {
         <div className="product-title-group">
           <h1>{product.name}</h1>
           <p className="breadcrumb">
-            Shop: <span>{product.shop.name}</span>
+            {product.shop.name} • <span>{product.category.name}</span>{" "}
           </p>
-          <p>Category: {product.category.name}</p>
         </div>
         {user && isOwner && (
           <div className="actions">
@@ -101,7 +100,7 @@ const ProductDetails = ({ user }) => {
 
           {/* One comment: Primary Add to Cart button styled with the new boxed CSS */}
           {user && (
-            <button className="add-to-cart-boxed" onClick={handleAddToCart}>
+            <button className="add-to-cart-btn" onClick={handleAddToCart}>
               Add to Cart — ${product.price}
             </button>
           )}
