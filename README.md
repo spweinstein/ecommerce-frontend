@@ -171,9 +171,8 @@ The following enhancements are planned for future releases:
 ### Inventory Management
 
 - **Stock Tracking**: Real-time inventory management for products
-- **Low Stock Alerts**: Automatic notifications when inventory runs low
-- **Stock History**: Track inventory changes over time
-- **Bulk Inventory Updates**: Update stock levels for multiple products at once
+- **Integration with Cart/Checkout**:
+  - Validate that stock is sufficient for items in cart when loading cart & when attempting to check out
 
 ### Cart & Checkout Enhancements
 
@@ -224,10 +223,7 @@ The following enhancements are planned for future releases:
 ### Shop Features
 
 - **Shop Analytics**: Sales metrics, popular products, and revenue tracking
-- **Bulk Product Import**: CSV/Excel upload for adding multiple products
 - **Product Variants**: Support for size, color, and other variations
-- **Shop Policies**: Display shipping, return, and refund policies
-- **Shop Reviews**: Allow users to rate and review shops
 
 ### Payment Integration
 
