@@ -166,7 +166,7 @@ The application supports role-based access:
 
 ## Future Features
 
-The following enhancements are planned for future releases:
+The following enhancements are planned for future work:
 
 ### Inventory Management
 

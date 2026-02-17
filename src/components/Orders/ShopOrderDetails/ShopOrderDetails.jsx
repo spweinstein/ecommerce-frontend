@@ -83,7 +83,21 @@ const ShopOrderDetails = () => {
       {/* Total */}
       <div className="order-total-box">
         <div className="total-line">
-          <span className="total-label">ORDER TOTAL</span>
+          <span className="total-label">SHIPPING</span>
+          <span className="total-price">
+            ${shopOrder.shippingTotal.toFixed(2)}
+          </span>
+        </div>
+        <div className="total-line">
+          <span className="total-label">TAX</span>
+          <span className="total-price">${shopOrder.taxTotal.toFixed(2)}</span>
+        </div>
+        <div className="total-line">
+          <span className="total-label">SUBTOTAL</span>
+          <span className="total-price">${shopOrder.subtotal.toFixed(2)}</span>
+        </div>
+        <div className="total-line">
+          <span className="total-label">GRAND TOTAL</span>
           <span className="total-price">
             ${shopOrder.grandTotal.toFixed(2)}
           </span>

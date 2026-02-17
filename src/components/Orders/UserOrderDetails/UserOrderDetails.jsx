@@ -97,6 +97,24 @@ const UserOrderDetails = () => {
                       ${shopOrder.subtotal.toFixed(2)}
                     </td>
                   </tr>
+                  <tr className="subtotal-row">
+                    <td colSpan="3">Tax</td>
+                    <td className="subtotal-amount">
+                      ${shopOrder.taxTotal.toFixed(2)}
+                    </td>
+                  </tr>
+                  <tr className="subtotal-row">
+                    <td colSpan="3">Shipping</td>
+                    <td className="subtotal-amount">
+                      ${shopOrder.shippingTotal.toFixed(2)}
+                    </td>
+                  </tr>
+                  <tr className="subtotal-row">
+                    <td colSpan="3">Shop Total</td>
+                    <td className="subtotal-amount">
+                      ${shopOrder.grandTotal.toFixed(2)}
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
