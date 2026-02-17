@@ -213,6 +213,7 @@ The following enhancements are planned for future releases:
 
 ### User Experience
 
+- **Add to Cart on ProductGrid**: Integrate an easy-click add to cart button on the products page/shop products grid so the user can easily add multiple items to the cart. Style the cart navbar to update UI with a display of cart cost and number of items so user gets visual feedback.
 - **Product Reviews & Ratings**: Allow customers to review and rate products
 - **Wishlist/Favorites**: Save products for later purchase
 - **Product Recommendations**: AI-powered product suggestions
@@ -232,20 +233,7 @@ The following enhancements are planned for future releases:
 
 - **Payment Methods**: Credit cards
 - **Secure Payment Processing**: Integration with Stripe, PayPal, or similar
-- **Saved Payment Methods**: Securely store payment information
-- **Split Payments**: Pay with multiple payment methods
 
 ### Admin Features
 
-- **Admin Dashboard**: Platform-wide analytics and management
-- **User Management**: Moderate users, handle disputes
-- **Commission System**: Track and manage platform fees from sales
-- **Reporting Tools**: Generate sales, user, and platform reports
-
-### Performance & Security
-
-- **Image Optimization**: Lazy loading and CDN integration for product images
-- **Caching Strategy**: Implement client-side caching for better performance
-- **Two-Factor Authentication**: Enhanced account security
-- **Password Reset Flow**: Secure password recovery system
-- **Session Management**: Better handling of expired sessions
+- **Method to approve users with ability to create shops**
