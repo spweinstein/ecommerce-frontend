@@ -198,7 +198,7 @@ const ProductCreateForm = () => {
             />
           </div>
 
-          <div className="form-row-four">
+          <div className="form-row">
             <div className="input-group">
               <label>Weight</label>
               <input
