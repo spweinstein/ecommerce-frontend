@@ -107,11 +107,28 @@ const UserOrderDetails = () => {
       {/* Grand Total */}
       <div className="order-grand-total">
         <div className="total-line">
+          <span className="total-label">Subtotal</span>
+          <span className="total-price">
+            ${order.subtotal?.toFixed(2) || "0.00"}
+          </span>
+        </div>
+        <div className="total-line">
+          <span className="total-label">Shipping Total</span>
+          <span className="total-price">
+            ${order.shippingTotal?.toFixed(2) || "0.00"}
+          </span>
+        </div>
+        <div className="total-line">
+          <span className="total-label">Tax Total</span>
+          <span className="total-price">
+            ${order.taxTotal?.toFixed(2) || "0.00"}
+          </span>
+        </div>
+        <div className="total-line total-line--grand">
           <span className="total-label">ORDER TOTAL</span>
-          <span className="total-price">${order.total.toFixed(2)}</span>
+          <span className="total-price">${order.grandTotal.toFixed(2)}</span>
         </div>
       </div>
-
       <div className="footer-nav">
         <Link to="/orders" className="btn-back">
           ← Back to My Orders

@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { Link } from "react-router"; // Added for navigation
+import { Link, useNavigate } from "react-router"; // Added for navigation
 import "./CartPage.css";
 
 import {
@@ -16,6 +16,7 @@ import { submitOrder } from "../../services/orderService.js";
 const CartPage = () => {
   const [cartItems, setCartItems] = useState([]);
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
 
   const fetchCart = async () => {
     try {
@@ -59,15 +60,16 @@ const CartPage = () => {
     .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
     .toFixed(2);
 
-  const handleOrder = async () => {
-    await submitOrder(
-      cartItems.map((item) => ({
-        product: item.product._id,
-        quantity: item.quantity,
-        // Don't pass unitPrice or price; safer to do on backend
-      })),
-    );
-    fetchCart();
+  const handleCheckout = async () => {
+    // await submitOrder(
+    //   cartItems.map((item) => ({
+    //     product: item.product._id,
+    //     quantity: item.quantity,
+    //     // Don't pass unitPrice or price; safer to do on backend
+    //   })),
+    // );
+    // fetchCart();
+    navigate("/checkout");
   };
 
   if (!user) {
@@ -155,7 +157,7 @@ const CartPage = () => {
         <button
           className="submit-btn"
           disabled={cartItems.length === 0}
-          onClick={handleOrder}
+          onClick={handleCheckout}
         >
           CHECKOUT
         </button>

@@ -19,6 +19,8 @@ import OrderTable from "./components/Orders/OrderTable.jsx";
 import Unauthorized from "./components/Unauthorized/Unauthorized.jsx";
 import UserOrderDetails from "./components/Orders/UserOrderDetails/UserOrderDetails.jsx";
 import ShopOrderDetails from "./components/Orders/ShopOrderDetails/ShopOrderDetails.jsx";
+import CheckoutPage from "./components/Checkout/CheckoutPage.jsx";
+
 import "./App.css";
 
 const App = () => {
@@ -48,6 +50,8 @@ const App = () => {
         <Route path="/products/:productId/edit" element={<ProductEditForm />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/orders" element={<OrderTable />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
+
         <Route path="/unauthorized" element={<Unauthorized />} />
         <Route path="/orders/:orderId" element={<UserOrderDetails />} />
         <Route

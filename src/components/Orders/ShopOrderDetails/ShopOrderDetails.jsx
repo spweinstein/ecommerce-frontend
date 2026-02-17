@@ -84,7 +84,9 @@ const ShopOrderDetails = () => {
       <div className="order-total-box">
         <div className="total-line">
           <span className="total-label">ORDER TOTAL</span>
-          <span className="total-price">${shopOrder.subtotal.toFixed(2)}</span>
+          <span className="total-price">
+            ${shopOrder.grandTotal.toFixed(2)}
+          </span>
         </div>
       </div>
 

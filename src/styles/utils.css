@@ -24,7 +24,7 @@
 
 .details-header--card {
   background: #ffffff;
-  border: 1px solid #eeeeee;
+  border: 1px solid #8d7373;
   padding: 1rem;
   border-radius: 30px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
@@ -32,7 +32,7 @@
 }
 
 .details-header h1 {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 900;
   letter-spacing: -1px;
   text-transform: uppercase;
@@ -256,9 +256,9 @@
 
 .grid-header h1,
 .grid-header h3 {
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-weight: 900;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   margin: 0;
 }
@@ -273,13 +273,6 @@
     align-items: flex-start;
     gap: 20px;
   }
-
-  .grid-header h1,
-  .grid-header h3 {
-    font-size: 1rem;
-    letter-spacing: 3px;
-  }
-
   .filter-box,
   .search-box {
     width: 100%;
@@ -293,18 +286,18 @@
 
 @media (max-width: 480px) {
   .grid-container {
-    padding: 0 20px;
+    padding: 0 10px;
     margin: 20px auto;
   }
 
   .grid-header {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
   }
 
   .grid-header h1,
   .grid-header h3 {
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     letter-spacing: 2px;
   }
 }

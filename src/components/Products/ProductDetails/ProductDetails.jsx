@@ -100,7 +100,7 @@ const ProductDetails = ({ user }) => {
 
           {/* One comment: Primary Add to Cart button styled with the new boxed CSS */}
           {user && (
-            <button className="add-to-cart-boxed" onClick={handleAddToCart}>
+            <button className="add-to-cart-btn" onClick={handleAddToCart}>
               Add to Cart — ${product.price}
             </button>
           )}

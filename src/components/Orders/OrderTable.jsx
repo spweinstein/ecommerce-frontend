@@ -83,7 +83,7 @@ const OrderTable = () => {
                     </span>
                   </td>
                   <td className="order-total">
-                    ${(order?.total || order?.subtotal).toFixed(2)}
+                    ${order?.grandTotal?.toFixed(2)}
                   </td>
                   <td className="order-date">{formatDate(order.createdAt)}</td>
                 </tr>
